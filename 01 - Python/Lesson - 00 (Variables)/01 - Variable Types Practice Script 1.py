@@ -1,13 +1,3 @@
-'''
---------------------------------------
-| Student  :  Mostafa Hussein        |
-| Student# :  899733                 |
-| Cohort   :  C                      |
-| Teacher  :  Mr. Ghorvei            |
-| Subject  :  Variable Type Pracitce |
-| Date     :  April 30th 2021        |
---------------------------------------
-'''
 # Importing math library for trig functions
 import math
 
