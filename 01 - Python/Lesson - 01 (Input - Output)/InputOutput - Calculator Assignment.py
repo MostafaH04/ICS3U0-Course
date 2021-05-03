@@ -5,11 +5,12 @@
 | Cohort   :  C                               |
 | Teacher  :  Mr. Ghorvei                     |
 | Subject  :  Calculator using Operands       |
-| Date     :  May 3rd 2021 - Present          | 
+| Date     :  May 3rd 2021                    | 
 -----------------------------------------------
 '''
 import os # Importing the OS library (to clear console)
 import time # Importing time libarary 
+import math # Importing math libarry 
 
 #Functions for the calculator
 
@@ -22,118 +23,401 @@ def add():
     print(addString[0:i])
     time.sleep(0.25)
     os.system("clear")
-  print("\n\n")
+  print("Addition\n\n")
 
-  print()
+  a = float(input("First Number: "))
+  b = float(input("Second Number: "))
 
-  pass
+  print(f"\n{a} + {b} =", end = "")
+
+  return a+b
 
 # Subtraction
 def diff():
-  pass
+  os.system("clear")
+  
+  diffString = "Subtraction"
+  for i in range(len(diffString)):
+    print(diffString[0:i])
+    time.sleep(0.25)
+    os.system("clear")
+  print("Subtraction\n\n")
+
+  a = float(input("First Number: "))
+  b = float(input("Second Number: "))
+
+  print(f"\n{a} - {b} =", end = "")
+
+  return a - b
 
 # Multiplication
 def multi():
-  pass
+  os.system("clear")
+  
+  multiString = "Multiplication"
+  for i in range(len(multiString)):
+    print(multiString[0:i])
+    time.sleep(0.25)
+    os.system("clear")
+  print("Multiplication\n\n")
+
+  a = float(input("First Number: "))
+  b = float(input("Second Number: "))
+
+  print(f"\n{a} x {b} =", end = "")
+
+  return a * b
 
 # Division
 def divide():
-  pass
+  os.system("clear")
+  
+  divideString = "Division"
+  for i in range(len(divideString)):
+    print(divideString[0:i])
+    time.sleep(0.25)
+    os.system("clear")
+  print("Division\n\n")
+
+  a = float(input("First Number: "))
+  b = float(input("Second Number: "))
+
+  print(f"\n{a} ÷ {b} =", end = " ")
+
+  return a / b
 
 # Remainder
 def modulo():
-  pass
+  os.system("clear")
+  
+  moduloString = "Remainder"
+  for i in range(len(moduloString)):
+    print(moduloString[0:i])
+    time.sleep(0.25)
+    os.system("clear")
+  print("Remainder\n\n")
+
+  a = float(input("First Number: "))
+  b = float(input("Second Number: "))
+
+  print(f"\nThe Remainder from the operation {a} ÷ {b}, is", end = " ")
+
+  return a % b
 
 # Sine
 def sine():
-  pass
+  os.system("clear")
+  
+  sineString = "Sine"
+  for i in range(len(sineString)):
+    print(sineString[0:i])
+    time.sleep(0.25)
+    os.system("clear")
+  print("Sine\n\n")
+
+  while True:
+    radiansQ = input("Would you like to continue in radians or degrees? (r/d)\n")
+    
+    if radiansQ.lower() == 'r' or radiansQ.lower() == "radians":
+      radians = True
+      break
+    
+    elif radiansQ.lower() == 'd' or radiansQ.lower() == "degrees":
+      radians = False
+      break
+
+  a = float(input("\nTheta = "))
+  
+  print(f"\nsin({a}) =", end = " ")
+
+  if radians:
+    return math.sin(a)
+  else:
+    return math.sin(a*math.pi/180)
 
 # Cosine
 def cosine():
-  pass
+  os.system("clear")
+  
+  cosineString = "Cosine"
+  for i in range(len(cosineString)):
+    print(cosineString[0:i])
+    time.sleep(0.25)
+    os.system("clear")
+  print("Cosine\n\n")
+
+  while True:
+    radiansQ = input("Would you like to continue in radians or degrees? (r/d)\n")
+    
+    if radiansQ.lower() == 'r' or radiansQ.lower() == "radians":
+      radians = True
+      break
+    
+    elif radiansQ.lower() == 'd' or radiansQ.lower() == "degrees":
+      radians = False
+      break
+
+  a = float(input("\nTheta = "))
+  
+  print(f"\ncos({a}) =", end = " ")
+
+  if radians:
+    return math.cos(a)
+  else:
+    return math.cos(a*math.pi/180)
 
 # Tangent
 def tangent():
-  pass
+  os.system("clear")
+  
+  tangentString = "Tangent"
+  for i in range(len(tangentString)):
+    print(tangentString[0:i])
+    time.sleep(0.25)
+    os.system("clear")
+  print("Tangent\n\n")
+
+  while True:
+    radiansQ = input("Would you like to continue in radians or degrees? (r/d)\n")
+    
+    if radiansQ.lower() == 'r' or radiansQ.lower() == "radians":
+      radians = True
+      break
+    
+    elif radiansQ.lower() == 'd' or radiansQ.lower() == "degrees":
+      radians = False
+      break
+
+  a = float(input("\nTheta = "))
+  
+  print(f"\ntan({a}) =", end = " ")
+
+  if radians:
+    return math.tan(a)
+  else:
+    return math.tan(a*math.pi/180)
 
 # Power
 def power():
-  pass  
+  os.system("clear")
+  
+  powerString = "Power"
+  for i in range(len(powerString)):
+    print(powerString[0:i])
+    time.sleep(0.25)
+    os.system("clear")
+  print("Power\n\n") 
 
+  a = float(input("Base number: "))
+  b = float(input("Power raised: "))
+
+  print(f"\n{a} to the power of {b} =", end = " ")
+
+  return a**b
+
+#Hypoerbolic sine
+def hypsin():
+  os.system("clear")
+  
+  hypSinString = "Hyperbolic Sine"
+  for i in range(len(hypSinString)):
+    print(hypSinString[0:i])
+    time.sleep(0.25)
+    os.system("clear")
+  print("Hyperbolic Sine\n\n")
+
+  while True:
+    radiansQ = input("Would you like to continue in radians or degrees? (r/d)\n")
+    
+    if radiansQ.lower() == 'r' or radiansQ.lower() == "radians":
+      radians = True
+      break
+    
+    elif radiansQ.lower() == 'd' or radiansQ.lower() == "degrees":
+      radians = False
+      break
+
+  a = float(input("\nTheta = "))
+  
+  print(f"\nsinh({a}) =", end = " ")
+
+  if radians:
+    return math.sinh(a)
+  else:
+    return math.sinh(a*math.pi/180)
+
+#Hypoerbolic cosine
+def hypcos():
+  os.system("clear")
+  
+  hypCosString = "Hyperbolic Cosine"
+  for i in range(len(hypCosString)):
+    print(hypCosString[0:i])
+    time.sleep(0.25)
+    os.system("clear")
+  print("Hyperbolic Cosine\n\n")
+
+  while True:
+    radiansQ = input("Would you like to continue in radians or degrees? (r/d)\n")
+    
+    if radiansQ.lower() == 'r' or radiansQ.lower() == "radians":
+      radians = True
+      break
+    
+    elif radiansQ.lower() == 'd' or radiansQ.lower() == "degrees":
+      radians = False
+      break
+
+  a = float(input("\nTheta = "))
+  
+  print(f"\ncosh({a}) =", end = " ")
+
+  if radians:
+    return math.cosh(a)
+  else:
+    return math.cosh(a*math.pi/180)
+
+#Hypoerbolic tangent
+def hyptan():
+  os.system("clear")
+  
+  hypTanString = "Hyperbolic Tangent"
+  for i in range(len(hypTanString)):
+    print(hypTanString[0:i])
+    time.sleep(0.25)
+    os.system("clear")
+  print("Hyperbolic Tangent\n\n")
+
+  while True:
+    radiansQ = input("Would you like to continue in radians or degrees? (r/d)\n")
+    
+    if radiansQ.lower() == 'r' or radiansQ.lower() == "radians":
+      radians = True
+      break
+    
+    elif radiansQ.lower() == 'd' or radiansQ.lower() == "degrees":
+      radians = False
+      break
+
+  a = float(input("\nTheta = "))
+  
+  print(f"\ntanh({a}) =", end = " ")
+
+  if radians:
+    return math.tanh(a)
+  else:
+    return math.tanh(a*math.pi/180)
 
 # Gets the user's name
 name = input("Hello, what is your name?\n") 
 
-# Asks the user if they want to input their age
-ageQ = input(f"Hello {name}, do you mind telling me your age?\ny/n: ") 
+while True:
+  # Asks the user if they want to input their age
+  ageQ = input(f"\nHello {name}, do you mind telling me your age?\ny/n: ") 
 
-# Initially sets the age to None, but if the user 
-age = None
-if ageQ.lower() == 'no' or ageQ.lower() == 'n':
-  age=input(f"Alright {name}, what is your age?\n")
+  # Initially sets the age to None, but if the user 
+  age = None
+  if ageQ.lower() == 'no' or ageQ.lower() == 'n':
+    age=input(f"\nAlright {name}, what is your age?\n")
+    break
+  elif ageQ.lower() == 'yes' or ageQ.lower() == "y":
+    break
 
-os.system('clear')
-
-print("""
+# String including the ASCII title art (Calculator)
+title = r"""
  ____            ___                  ___            __                     
 /\  _`\         /\_ \                /\_ \          /\ \__                  
 \ \ \/\_\    __ \//\ \     ___  __  _\//\ \      __ \ \ ,_\   ___   _ __     
  \ \ \/_/_ /'__`\ \ \ \   /'___/\ \/\ \\ \ \   /'__`\\ \ \/  / __`\/\`'__\   
   \ \ \L\ /\ \L\.\_\_\ \_/\ \__\ \ \_\ \\_\ \_/\ \L\.\\ \ \_/\ \L\ \ \ \/   
    \ \____\ \__/.\_/\____\ \____\ \____//\____\ \__/.\_\ \__\ \____/\ \_\ 
-    \/___/ \/__/\/_\/____/\/____/\/___/ \/____/\/__/\/_/\/__/\/___/  \/_/      
-\n\n\n    
-""")
+    \/___/ \/__/\/_\/____/\/____/\/___/ \/____/\/__/\/_/\/__/\/___/  \/_/          
+"""
 
 # List of possible functions
-functions = ["Addition", "Subtraction", "Mulitplication", "Division", "Remainder", "Sine", "Cosine", "Tangent", "Power","Exit"]
-
-# Displays the functions
-for i in range(len(functions)):
-  if i%4 == 0:print("\n")
-  print(i, functions[i],end = "   ")
-print("\n\n")
+functions = ["Addition", "Subtraction", "Mulitplication", "Division", "Remainder", "Sine", "Cosine", "Tangent", "Power", "Hyperbolic Sine","Hyperbolic Cosine", "Hyperbolic Tangent", "History", "Exit"]
 
 # User picks the function they want to use
 while True:
+  # Clears the console
+  os.system('clear')
+
+  # Displays the title "Calculator at the top of the screen.
+  # If not seen, make sure the console is big enough for it to be displayed properly
+  print(title,end = "\n\n\n")
+
+  # Displays the functions
+  for i in range(len(functions)):
+
+    # If the function being printed is a factor of 4, that means it is the 4th in the line so start a new line
+    if i%4 == 0:print("\n")
+    
+    # Prints the number of the function then the function it self with spacing after it
+    print(i, functions[i],end = "   ")
+  print("\n\n")
+
+  # Infinite loop that makes sure the user is inputing an applicable number
   while True:
+    # Displays the question prompting the user to choose a function and stores the answer
     func = int(input(f"Pick a function between 0 and {len(functions)-1}:\n"))
+
+    # Makes sure the user is inputing an applicable number
     if func >= 0 and func <= len(functions)-1:
       break
   
+  # If the user picked 0, this calls on the addition function
   if func == 0:
     print(add())
   
+  # If the user picked 1, this calls on the subtraction function
   elif func == 1:
     print(diff())
 
+  # If the user picked 2, this calls on the Mulitplication function
   elif func == 2:
     print(multi())
   
+  # If the user picked 3, this calls on the Dividsion function
   elif func == 3:
     print(divide())
   
+  # If the user picked 4, this calls on the Remainder / Modulo function
   elif func == 4:
     print(modulo())
   
+  # If the user picked 5, this calls on the Sine function
   elif func == 5:
     print(sine())
   
+  # If the user picked 6, this calls on the Cosine function
   elif func == 6:
     print(cosine())
   
+  # If the user picked 7, this calls on the Tangent function
   elif func == 7:
     print(tangent())
   
+  # If the user picked 8, this calls on the power function
   elif func == 8:
     print(power())
-  
+
+  # If the user picked 9, this calls on the Hypoerbolic Sin function
   elif func == 9:
+    print(hypsin())
+  
+  # If the user picked 10, this calls on the Hyperbolic cosine function
+  elif func == 10:
+    print(hypcos())
+
+  # If the user picked 11, this calls on the Hyperbolic Tangent function
+  elif func == 11:
+    print(hyptan())
+  
+  # If the user picked 12, this ends the program.
+  elif func == 12:
+    os.system("clear")
+    print(f"Good night! {name} :)")
     break
 
+  continueQ = input("\n\n\nPress Enter To Continue")
   
-
-
-
-
-
