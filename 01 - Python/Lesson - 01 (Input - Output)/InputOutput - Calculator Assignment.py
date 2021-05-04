@@ -12,6 +12,10 @@ import os # Importing the OS library (to clear console)
 import time # Importing time libarary 
 import math # Importing math libarry 
 
+# List storing the history of calculations
+
+calcHis = []
+
 #Functions for the calculator
 
 # Addition
@@ -28,7 +32,9 @@ def add():
   a = float(input("First Number: "))
   b = float(input("Second Number: "))
 
-  print(f"\n{a} + {b} =", end = "")
+  print(f"\n{a} + {b} = ", end = "")
+
+  calcHis.append([addString, f": {a} + {b} = {a+b}"])
 
   return a+b
 
@@ -46,7 +52,9 @@ def diff():
   a = float(input("First Number: "))
   b = float(input("Second Number: "))
 
-  print(f"\n{a} - {b} =", end = "")
+  print(f"\n{a} - {b} = ", end = "")
+
+  calcHis.append([diffString, f": {a} - {b} = {a-b}"])
 
   return a - b
 
@@ -64,7 +72,9 @@ def multi():
   a = float(input("First Number: "))
   b = float(input("Second Number: "))
 
-  print(f"\n{a} x {b} =", end = "")
+  print(f"\n{a} x {b} = ", end = "")
+
+  calcHis.append([multiString, f": {a} x {b} = {a*b}"])
 
   return a * b
 
@@ -82,7 +92,9 @@ def divide():
   a = float(input("First Number: "))
   b = float(input("Second Number: "))
 
-  print(f"\n{a} ÷ {b} =", end = " ")
+  print(f"\n{a} ÷ {b} = ", end = " ")
+
+  calcHis.append([divideString, f": {a} ÷ {b} = {a/b}"])
 
   return a / b
 
@@ -101,6 +113,8 @@ def modulo():
   b = float(input("Second Number: "))
 
   print(f"\nThe Remainder from the operation {a} ÷ {b}, is", end = " ")
+
+  calcHis.append([moduloString, f": The Remainder from the operation {a} ÷ {b}, is {a%b}"])
 
   return a % b
 
@@ -131,9 +145,16 @@ def sine():
   print(f"\nsin({a}) =", end = " ")
 
   if radians:
+    
+    calcHis.append([sineString, f": sin({a}) = {math.sin(a)}"])
+    
     return math.sin(a)
+
   else:
-    return math.sin(a*math.pi/180)
+
+    calcHis.append([sineString, f": sin({a}) = {math.sin(a*math.pi/180)}"])
+
+    return math.sin(a*math.pi/180)    
 
 # Cosine
 def cosine():
@@ -162,9 +183,16 @@ def cosine():
   print(f"\ncos({a}) =", end = " ")
 
   if radians:
-    return math.cos(a)
+    
+    calcHis.append([cosineString, f": cos({a}) = {math.cos(a)}"])
+
+    return math.cos(a) 
+
   else:
-    return math.cos(a*math.pi/180)
+
+    calcHis.append([cosineString, f": cos({a}) = {math.cos(a*math.pi/180)}"])
+
+    return math.cos(a*math.pi/180)    
 
 # Tangent
 def tangent():
@@ -193,9 +221,16 @@ def tangent():
   print(f"\ntan({a}) =", end = " ")
 
   if radians:
-    return math.tan(a)
+
+    calcHis.append([tangentString, f": tan({a}) = {math.tan(a)}"])
+
+    return math.tan(a)    
+
   else:
-    return math.tan(a*math.pi/180)
+
+    calcHis.append([tangentString, f": tan({a}) = {math.tan(a*math.pi/180)}"])
+
+    return math.tan(a*math.pi/180)    
 
 # Power
 def power():
@@ -212,6 +247,8 @@ def power():
   b = float(input("Power raised: "))
 
   print(f"\n{a} to the power of {b} =", end = " ")
+
+  calcHis.append([powerString, f": {a} to the power of {b} = {a**b}"])
 
   return a**b
 
@@ -242,9 +279,16 @@ def hypsin():
   print(f"\nsinh({a}) =", end = " ")
 
   if radians:
-    return math.sinh(a)
+
+    calcHis.append([hypSinString, f": sinh({a}) = {math.sinh(a)}"])
+
+    return math.sinh(a)   
+
   else:
-    return math.sinh(a*math.pi/180)
+    
+    calcHis.append([hypSinString, f": sinh({a}) = {math.sinh(a*math.pi/180)}"])
+
+    return math.sinh(a*math.pi/180)    
 
 #Hypoerbolic cosine
 def hypcos():
@@ -273,8 +317,15 @@ def hypcos():
   print(f"\ncosh({a}) =", end = " ")
 
   if radians:
+
+    calcHis.append([hypCosString, f": cosh({a}) = {math.cosh(a)}"])
+
     return math.cosh(a)
+
   else:
+
+    calcHis.append([hypCosString, f": cosh({a}) = {math.cosh(a*math.pi/180)}"])
+
     return math.cosh(a*math.pi/180)
 
 #Hypoerbolic tangent
@@ -304,8 +355,14 @@ def hyptan():
   print(f"\ntanh({a}) =", end = " ")
 
   if radians:
+
+    calcHis.append([hypTanString, f": tanh({a}) = {math.tanh(a)}"])
+
     return math.tanh(a)
   else:
+
+    calcHis.append([hypTanString, f": tanh({a}) = {math.tanh(a*math.pi/180)}"])
+
     return math.tanh(a*math.pi/180)
 
 # Gets the user's name
@@ -413,11 +470,16 @@ while True:
   elif func == 11:
     print(hyptan())
   
-  # If the user picked 12, this ends the program.
   elif func == 12:
+    os.system("clear")
+    for i in range(len(calcHis)):
+      print(i+1, calcHis[i][0], calcHis[i][1])
+
+
+  # If the user picked 12, this ends the program.
+  elif func == 13:
     os.system("clear")
     print(f"Good night! {name} :)")
     break
 
   continueQ = input("\n\n\nPress Enter To Continue")
-  
