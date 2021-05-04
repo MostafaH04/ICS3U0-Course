@@ -1,3 +1,13 @@
+'''
+-----------------------------------------------
+| Student  :  Mostafa Hussein                 |
+| Student# :  899733                          |
+| Cohort   :  C                               |
+| Teacher  :  Mr. Ghorvei                     |
+| Subject  :  Input Output - Calculator       |
+| Date     :  May 3rd 2021                    | 
+-----------------------------------------------
+'''
 import os # Importing the OS library (to clear console)
 import time # Importing time libarary 
 import math # Importing math libarry 
@@ -6,6 +16,20 @@ import math # Importing math libarry
 
 calcHis = []
 
+# Delay between each animated letter 
+animDelay = 0.4
+
+# Function for animating text
+def animate(content):
+  #Goes through
+  for i in range(len(content)):
+    print(content[0:i])
+    time.sleep(animDelay/len(content))
+    os.system("clear")
+  print(f"{content}\n\n")
+
+  pass
+
 #Functions for the calculator
 
 # Addition
@@ -13,11 +37,7 @@ def add():
   os.system("clear")
   
   addString = "Addition"
-  for i in range(len(addString)):
-    print(addString[0:i])
-    time.sleep(0.25)
-    os.system("clear")
-  print("Addition\n\n")
+  animate(addString)
 
   a = float(input("First Number: "))
   b = float(input("Second Number: "))
@@ -33,11 +53,7 @@ def diff():
   os.system("clear")
   
   diffString = "Subtraction"
-  for i in range(len(diffString)):
-    print(diffString[0:i])
-    time.sleep(0.25)
-    os.system("clear")
-  print("Subtraction\n\n")
+  animate(diffString)
 
   a = float(input("First Number: "))
   b = float(input("Second Number: "))
@@ -53,11 +69,7 @@ def multi():
   os.system("clear")
   
   multiString = "Multiplication"
-  for i in range(len(multiString)):
-    print(multiString[0:i])
-    time.sleep(0.25)
-    os.system("clear")
-  print("Multiplication\n\n")
+  animate(multiString)
 
   a = float(input("First Number: "))
   b = float(input("Second Number: "))
@@ -73,11 +85,7 @@ def divide():
   os.system("clear")
   
   divideString = "Division"
-  for i in range(len(divideString)):
-    print(divideString[0:i])
-    time.sleep(0.25)
-    os.system("clear")
-  print("Division\n\n")
+  animate(divideString)
 
   a = float(input("First Number: "))
   b = float(input("Second Number: "))
@@ -93,11 +101,7 @@ def modulo():
   os.system("clear")
   
   moduloString = "Remainder"
-  for i in range(len(moduloString)):
-    print(moduloString[0:i])
-    time.sleep(0.25)
-    os.system("clear")
-  print("Remainder\n\n")
+  animate(moduloString)
 
   a = float(input("First Number: "))
   b = float(input("Second Number: "))
@@ -113,11 +117,7 @@ def sine():
   os.system("clear")
   
   sineString = "Sine"
-  for i in range(len(sineString)):
-    print(sineString[0:i])
-    time.sleep(0.25)
-    os.system("clear")
-  print("Sine\n\n")
+  animate(sineString)
 
   while True:
     radiansQ = input("Would you like to continue in radians or degrees? (r/d)\n")
@@ -151,11 +151,7 @@ def cosine():
   os.system("clear")
   
   cosineString = "Cosine"
-  for i in range(len(cosineString)):
-    print(cosineString[0:i])
-    time.sleep(0.25)
-    os.system("clear")
-  print("Cosine\n\n")
+  animate(cosineString)
 
   while True:
     radiansQ = input("Would you like to continue in radians or degrees? (r/d)\n")
@@ -189,11 +185,7 @@ def tangent():
   os.system("clear")
   
   tangentString = "Tangent"
-  for i in range(len(tangentString)):
-    print(tangentString[0:i])
-    time.sleep(0.25)
-    os.system("clear")
-  print("Tangent\n\n")
+  animate(tangentString)
 
   while True:
     radiansQ = input("Would you like to continue in radians or degrees? (r/d)\n")
@@ -227,11 +219,7 @@ def power():
   os.system("clear")
   
   powerString = "Power"
-  for i in range(len(powerString)):
-    print(powerString[0:i])
-    time.sleep(0.25)
-    os.system("clear")
-  print("Power\n\n") 
+  animate(powerString)
 
   a = float(input("Base number: "))
   b = float(input("Power raised: "))
@@ -247,11 +235,7 @@ def hypsin():
   os.system("clear")
   
   hypSinString = "Hyperbolic Sine"
-  for i in range(len(hypSinString)):
-    print(hypSinString[0:i])
-    time.sleep(0.25)
-    os.system("clear")
-  print("Hyperbolic Sine\n\n")
+  animate(hypSinString)
 
   while True:
     radiansQ = input("Would you like to continue in radians or degrees? (r/d)\n")
@@ -285,11 +269,7 @@ def hypcos():
   os.system("clear")
   
   hypCosString = "Hyperbolic Cosine"
-  for i in range(len(hypCosString)):
-    print(hypCosString[0:i])
-    time.sleep(0.25)
-    os.system("clear")
-  print("Hyperbolic Cosine\n\n")
+  animate(hypCosString)
 
   while True:
     radiansQ = input("Would you like to continue in radians or degrees? (r/d)\n")
@@ -323,11 +303,7 @@ def hyptan():
   os.system("clear")
   
   hypTanString = "Hyperbolic Tangent"
-  for i in range(len(hypTanString)):
-    print(hypTanString[0:i])
-    time.sleep(0.25)
-    os.system("clear")
-  print("Hyperbolic Tangent\n\n")
+  animate(hypTanString)
 
   while True:
     radiansQ = input("Would you like to continue in radians or degrees? (r/d)\n")
@@ -359,14 +335,23 @@ def hyptan():
 name = input("Hello, what is your name?\n") 
 
 while True:
+  #Prints users name before the sentence (in a different way)
+  print(f'\nAlright {name}', end = ", ")
+
   # Asks the user if they want to input their age
-  ageQ = input(f"\nHello {name}, do you mind telling me your age?\ny/n: ") 
+  ageQ = input(f"do you mind telling me your age?\ny/n: ") 
 
   # Initially sets the age to None, but if the user 
   age = None
   if ageQ.lower() == 'no' or ageQ.lower() == 'n':
-    age=input(f"\nAlright {name}, what is your age?\n")
+    # Prints users name before the sentence (in a different way)
+    print(f'\nAlright {name}', end = ", ")
+
+    # Gets the user's age
+    age=input(f"\nwhat is your age?\n")
     break
+
+    # if the user said that they do mind, continue
   elif ageQ.lower() == 'yes' or ageQ.lower() == "y":
     break
 
