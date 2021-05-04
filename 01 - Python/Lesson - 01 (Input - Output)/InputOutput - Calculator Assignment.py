@@ -1,13 +1,3 @@
-'''
------------------------------------------------
-| Student  :  Mostafa Hussein                 |
-| Student# :  899733                          |
-| Cohort   :  C                               |
-| Teacher  :  Mr. Ghorvei                     |
-| Subject  :  Calculator using Operands       |
-| Date     :  May 3rd 2021                    | 
------------------------------------------------
-'''
 import os # Importing the OS library (to clear console)
 import time # Importing time libarary 
 import math # Importing math libarry 
