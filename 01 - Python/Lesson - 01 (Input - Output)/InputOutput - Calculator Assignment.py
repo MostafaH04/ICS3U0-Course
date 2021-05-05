@@ -4,7 +4,7 @@
 | Student# :  899733                          |
 | Cohort   :  C                               |
 | Teacher  :  Mr. Ghorvei                     |
-| Subject  :  Input Output - Calculator       |
+| Subject  :  Calculator                      |
 | Date     :  May 3rd 2021                    | 
 -----------------------------------------------
 '''
@@ -21,34 +21,36 @@ animDelay = 0.4
 
 # Function for animating text
 def animate(content):
-  #Goes through
-  for i in range(len(content)):
-    print(content[0:i])
-    time.sleep(animDelay/len(content))
-    os.system("clear")
-  print(f"{content}\n\n")
+  # Uses a for loop that repeats as many times as there are letters 
+  for i in range(len(content)): 
+    print(content[0:i]) # Prints the content in the string given to the function up until "i" number of letters, so as the for loop moves on, it prints more and more letters
 
-  pass
+    time.sleep(animDelay/len(content)) # Uses the animation delay variable divided by the length of the string, and this acts as a the delay between every letter printed in the console
+
+    os.system("clear") # this clears the console and makes it empty
+  print(f"{content}\n\n") # Prints the complete string at the end
+
+  pass # does not return anything back to where the function was called
 
 #Functions for the calculator
 
 # Addition
 def add():
-  os.system("clear")
+  os.system("clear") # clears the console
   
-  addString = "Addition"
-  animate(addString)
+  addString = "Addition" # sets a variable for addition, used for the animation of the text
+  animate(addString) # calls the function for animating the text
 
-  a = float(input("First Number: "))
-  b = float(input("Second Number: "))
+  a = float(input("First Number: ")) # Asks the user for the first number
+  b = float(input("Second Number: ")) # Asks the user for the second number
 
-  print(f"\n{a} + {b} = ", end = "")
+  print(f"\n{a} + {b} = ", end = "") # Prints the statement without the valeu (will be printed later)
 
-  calcHis.append([addString, f": {a} + {b} = {a+b}"])
+  calcHis.append([addString, f": {a} + {b} = {a+b}"]) # Stores the calculation in the history list
 
-  return a+b
+  return a+b # Returns the sum of both numbers to be printed from where the function was called
 
-# Subtraction
+# This function carries out the process for the subtraction
 def diff():
   os.system("clear")
   
@@ -64,7 +66,7 @@ def diff():
 
   return a - b
 
-# Multiplication
+# This function carries out the process for the multiplication
 def multi():
   os.system("clear")
   
@@ -80,7 +82,7 @@ def multi():
 
   return a * b
 
-# Division
+# This function carries out the process for the division
 def divide():
   os.system("clear")
   
@@ -96,7 +98,7 @@ def divide():
 
   return a / b
 
-# Remainder
+# This function carries out the process for the remainder
 def modulo():
   os.system("clear")
   
@@ -112,7 +114,7 @@ def modulo():
 
   return a % b
 
-# Sine
+# This function carries out the process for the sin function
 def sine():
   os.system("clear")
   
@@ -146,7 +148,7 @@ def sine():
 
     return math.sin(a*math.pi/180)    
 
-# Cosine
+# This function carries out the process for the cosin function
 def cosine():
   os.system("clear")
   
@@ -180,7 +182,7 @@ def cosine():
 
     return math.cos(a*math.pi/180)    
 
-# Tangent
+# This function carries out the process for the tan function
 def tangent():
   os.system("clear")
   
@@ -214,7 +216,7 @@ def tangent():
 
     return math.tan(a*math.pi/180)    
 
-# Power
+# This function carries out the process for the power function
 def power():
   os.system("clear")
   
@@ -230,7 +232,7 @@ def power():
 
   return a**b
 
-#Hypoerbolic sine
+# This function carries out the process for the hyperbolic sin function
 def hypsin():
   os.system("clear")
   
@@ -264,7 +266,7 @@ def hypsin():
 
     return math.sinh(a*math.pi/180)    
 
-#Hypoerbolic cosine
+# This function carries out the process for the hyperbolic cos function
 def hypcos():
   os.system("clear")
   
@@ -298,7 +300,7 @@ def hypcos():
 
     return math.cosh(a*math.pi/180)
 
-#Hypoerbolic tangent
+# This function carries out the process for the hyperbolic tan function
 def hyptan():
   os.system("clear")
   
@@ -369,7 +371,7 @@ title = r"""
 # List of possible functions
 functions = ["Addition", "Subtraction", "Mulitplication", "Division", "Remainder", "Sine", "Cosine", "Tangent", "Power", "Hyperbolic Sine","Hyperbolic Cosine", "Hyperbolic Tangent", "History", "Exit"]
 
-# User picks the function they want to use
+# User picks the function they want to use, this loop only breaks if the user wants to end the program
 while True:
   # Clears the console
   os.system('clear')
@@ -457,4 +459,5 @@ while True:
     print(f"Good night! {name} :)")
     break
 
+  # Promts the user to type Enter in order to continue (makes sure the calculation is there until the user is done looking at it)
   continueQ = input("\n\n\nPress Enter To Continue")
