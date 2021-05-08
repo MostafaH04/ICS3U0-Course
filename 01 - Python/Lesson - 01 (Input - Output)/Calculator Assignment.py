@@ -8,6 +8,37 @@
 | Date     :  May 3rd 2021                    | 
 -----------------------------------------------
 '''
+# Link to repl.it file:
+# https://replit.com/@p00766641/Input-Output-Calculator-MH899733#main.py 
+
+# Instructions:
+'''
+1. The program begins, prompting the user to enter their name (string)
+
+2. The user is then asked wheather they mind or do not mind giving the program their age
+
+3. Upon inputing the age (or skipping that process), the main page for the calculator is opened, and the user is prompted to pick one of the 13 functions displayed on the screen
+
+------------------------------------------------------------------
+Option 0: Addition (Explanation Example):
+
+Like all other arithmatic options in the calculator, the user greeted with an animation (for fun), and upon that, based on the function the user is prompted to input one or two numbers. For addition the user will get the option to pick 2 numbers.
+
+The output of the function is then displayed and the user is prompted with a press enter to continue. This makes sure the user saw the output, before the console is clear and the main page is displayed.
+
+Other Options (1 - 11):
+
+Similar to the addition function, the functions carry out the same processes for the different function, with each doing its own unique mathematical computation
+
+Exit and History Options:
+
+If the user picks the 12th option, they are greeted with the history of their previous calculations, which will be empty if the user did no previous calculations. Currently, this history is volatile, as it resets everytime the program resets, (no data storage system in place)
+
+On the other hand if the user picks the 13th option, the program ends
+
+'''
+
+
 import os # Importing the OS library (to clear console)
 import time # Importing time libarary 
 import math # Importing math libarry 
@@ -23,7 +54,7 @@ animDelay = 0.4
 def animate(content):
   # Uses a for loop that repeats as many times as there are letters 
   for i in range(len(content)): 
-    print(content[0:i]) # Prints the content in the string given to the function up until "i" number of letters, so as the for loop moves on, it prints more and more letters
+    print(content[:i]) # Prints the content in the string given to the function up until "i" number of letters, so as the for loop moves on, it prints more and more letters
 
     time.sleep(animDelay/len(content)) # Uses the animation delay variable divided by the length of the string, and this acts as a the delay between every letter printed in the console
 
@@ -32,7 +63,7 @@ def animate(content):
 
   pass # does not return anything back to where the function was called
 
-#Functions for the calculator
+# Initiallizing Functions for the calculator
 
 # Addition
 def add():
@@ -41,14 +72,14 @@ def add():
   addString = "Addition" # sets a variable for addition, used for the animation of the text
   animate(addString) # calls the function for animating the text
 
-  a = float(input("First Number: ")) # Asks the user for the first number
-  b = float(input("Second Number: ")) # Asks the user for the second number
+  firstNum = float(input("First Number: ")) # Asks the user for the first number
+  secondNum = float(input("Second Number: ")) # Asks the user for the second number
 
-  print(f"\n{a} + {b} = ", end = "") # Prints the statement without the valeu (will be printed later)
+  print(f"\n{firstNum} + {secondNum} = ", end = "") # Prints the statement without the valeu (will be printed later)
 
-  calcHis.append([addString, f": {a} + {b} = {a+b}"]) # Stores the calculation in the history list
+  calcHis.append([addString, f": {firstNum} + {secondNum} = {firstNum+secondNum}"]) # Stores the calculation in the history list
 
-  return a+b # Returns the sum of both numbers to be printed from where the function was called
+  return firstNum+secondNum # Returns the sum of both numbers to be printed from where the function was called
 
 # This function carries out the process for the subtraction
 def diff():
@@ -57,14 +88,14 @@ def diff():
   diffString = "Subtraction"
   animate(diffString)
 
-  a = float(input("First Number: "))
-  b = float(input("Second Number: "))
+  firstNum = float(input("First Number: "))
+  secondNum = float(input("Second Number: "))
 
-  print(f"\n{a} - {b} = ", end = "")
+  print(f"\n{firstNum} - {secondNum} = ", end = "")
 
-  calcHis.append([diffString, f": {a} - {b} = {a-b}"])
+  calcHis.append([diffString, f": {firstNum} - {secondNum} = {firstNum-secondNum}"])
 
-  return a - b
+  return firstNum - secondNum
 
 # This function carries out the process for the multiplication
 def multi():
@@ -73,14 +104,14 @@ def multi():
   multiString = "Multiplication"
   animate(multiString)
 
-  a = float(input("First Number: "))
-  b = float(input("Second Number: "))
+  firstNum = float(input("First Number: "))
+  secondNum = float(input("Second Number: "))
 
-  print(f"\n{a} x {b} = ", end = "")
+  print(f"\n{firstNum} x {secondNum} = ", end = "")
 
-  calcHis.append([multiString, f": {a} x {b} = {a*b}"])
+  calcHis.append([multiString, f": {firstNum} x {secondNum} = {firstNum*secondNum}"])
 
-  return a * b
+  return firstNum * secondNum
 
 # This function carries out the process for the division
 def divide():
@@ -89,14 +120,14 @@ def divide():
   divideString = "Division"
   animate(divideString)
 
-  a = float(input("First Number: "))
-  b = float(input("Second Number: "))
+  firstNum = float(input("First Number: "))
+  secondNum = float(input("Second Number: "))
 
-  print(f"\n{a} ÷ {b} = ", end = " ")
+  print(f"\n{firstNum} ÷ {secondNum} = ", end = " ")
 
-  calcHis.append([divideString, f": {a} ÷ {b} = {a/b}"])
+  calcHis.append([divideString, f": {firstNum} ÷ {secondNum} = {firstNum/secondNum}"])
 
-  return a / b
+  return firstNum / secondNum
 
 # This function carries out the process for the remainder
 def modulo():
@@ -105,14 +136,14 @@ def modulo():
   moduloString = "Remainder"
   animate(moduloString)
 
-  a = float(input("First Number: "))
-  b = float(input("Second Number: "))
+  firstNum = float(input("First Number: "))
+  secondNum = float(input("Second Number: "))
 
-  print(f"\nThe Remainder from the operation {a} ÷ {b}, is", end = " ")
+  print(f"\nThe Remainder from the operation {firstNum} ÷ {secondNum}, is", end = " ")
 
-  calcHis.append([moduloString, f": The Remainder from the operation {a} ÷ {b}, is {a%b}"])
+  calcHis.append([moduloString, f": The Remainder from the operation {firstNum} ÷ {secondNum}, is {firstNum%secondNum}"])
 
-  return a % b
+  return firstNum % secondNum
 
 # This function carries out the process for the sin function
 def sine():
@@ -132,21 +163,21 @@ def sine():
       radians = False
       break
 
-  a = float(input("\nTheta = "))
+  firstNum = float(input("\nTheta = "))
   
-  print(f"\nsin({a}) =", end = " ")
+  print(f"\nsin({firstNum}) =", end = " ")
 
   if radians:
     
-    calcHis.append([sineString, f": sin({a}) = {math.sin(a)}"])
+    calcHis.append([sineString, f": sin({firstNum}) = {math.sin(firstNum)}"])
     
-    return math.sin(a)
+    return math.sin(firstNum)
 
   else:
 
-    calcHis.append([sineString, f": sin({a}) = {math.sin(a*math.pi/180)}"])
+    calcHis.append([sineString, f": sin({firstNum}) = {math.sin(firstNum*math.pi/180)}"])
 
-    return math.sin(a*math.pi/180)    
+    return math.sin(firstNum*math.pi/180)    
 
 # This function carries out the process for the cosin function
 def cosine():
@@ -166,21 +197,21 @@ def cosine():
       radians = False
       break
 
-  a = float(input("\nTheta = "))
+  firstNum = float(input("\nTheta = "))
   
-  print(f"\ncos({a}) =", end = " ")
+  print(f"\ncos({firstNum}) =", end = " ")
 
   if radians:
     
-    calcHis.append([cosineString, f": cos({a}) = {math.cos(a)}"])
+    calcHis.append([cosineString, f": cos({firstNum}) = {math.cos(firstNum)}"])
 
-    return math.cos(a) 
+    return math.cos(firstNum) 
 
   else:
 
-    calcHis.append([cosineString, f": cos({a}) = {math.cos(a*math.pi/180)}"])
+    calcHis.append([cosineString, f": cos({firstNum}) = {math.cos(firstNum*math.pi/180)}"])
 
-    return math.cos(a*math.pi/180)    
+    return math.cos(firstNum*math.pi/180)    
 
 # This function carries out the process for the tan function
 def tangent():
@@ -200,21 +231,21 @@ def tangent():
       radians = False
       break
 
-  a = float(input("\nTheta = "))
+  firstNum = float(input("\nTheta = "))
   
-  print(f"\ntan({a}) =", end = " ")
+  print(f"\ntan({firstNum}) =", end = " ")
 
   if radians:
 
-    calcHis.append([tangentString, f": tan({a}) = {math.tan(a)}"])
+    calcHis.append([tangentString, f": tan({firstNum}) = {math.tan(firstNum)}"])
 
-    return math.tan(a)    
+    return math.tan(firstNum)    
 
   else:
 
-    calcHis.append([tangentString, f": tan({a}) = {math.tan(a*math.pi/180)}"])
+    calcHis.append([tangentString, f": tan({firstNum}) = {math.tan(firstNum*math.pi/180)}"])
 
-    return math.tan(a*math.pi/180)    
+    return math.tan(firstNum*math.pi/180)    
 
 # This function carries out the process for the power function
 def power():
@@ -223,14 +254,14 @@ def power():
   powerString = "Power"
   animate(powerString)
 
-  a = float(input("Base number: "))
-  b = float(input("Power raised: "))
+  firstNum = float(input("Base number: "))
+  secondNum = float(input("Power raised: "))
 
-  print(f"\n{a} to the power of {b} =", end = " ")
+  print(f"\n{firstNum} to the power of {secondNum} =", end = " ")
 
-  calcHis.append([powerString, f": {a} to the power of {b} = {a**b}"])
+  calcHis.append([powerString, f": {firstNum} to the power of {secondNum} = {firstNum**secondNum}"])
 
-  return a**b
+  return firstNum**secondNum
 
 # This function carries out the process for the hyperbolic sin function
 def hypsin():
@@ -250,21 +281,21 @@ def hypsin():
       radians = False
       break
 
-  a = float(input("\nTheta = "))
+  firstNum = float(input("\nTheta = "))
   
-  print(f"\nsinh({a}) =", end = " ")
+  print(f"\nsinh({firstNum}) =", end = " ")
 
   if radians:
 
-    calcHis.append([hypSinString, f": sinh({a}) = {math.sinh(a)}"])
+    calcHis.append([hypSinString, f": sinh({firstNum}) = {math.sinh(firstNum)}"])
 
-    return math.sinh(a)   
+    return math.sinh(firstNum)   
 
   else:
     
-    calcHis.append([hypSinString, f": sinh({a}) = {math.sinh(a*math.pi/180)}"])
+    calcHis.append([hypSinString, f": sinh({firstNum}) = {math.sinh(firstNum*math.pi/180)}"])
 
-    return math.sinh(a*math.pi/180)    
+    return math.sinh(firstNum*math.pi/180)    
 
 # This function carries out the process for the hyperbolic cos function
 def hypcos():
@@ -284,21 +315,21 @@ def hypcos():
       radians = False
       break
 
-  a = float(input("\nTheta = "))
+  firstNum = float(input("\nTheta = "))
   
-  print(f"\ncosh({a}) =", end = " ")
+  print(f"\ncosh({firstNum}) =", end = " ")
 
   if radians:
 
-    calcHis.append([hypCosString, f": cosh({a}) = {math.cosh(a)}"])
+    calcHis.append([hypCosString, f": cosh({firstNum}) = {math.cosh(firstNum)}"])
 
-    return math.cosh(a)
+    return math.cosh(firstNum)
 
   else:
 
-    calcHis.append([hypCosString, f": cosh({a}) = {math.cosh(a*math.pi/180)}"])
+    calcHis.append([hypCosString, f": cosh({firstNum}) = {math.cosh(firstNum*math.pi/180)}"])
 
-    return math.cosh(a*math.pi/180)
+    return math.cosh(firstNum*math.pi/180)
 
 # This function carries out the process for the hyperbolic tan function
 def hyptan():
@@ -318,20 +349,20 @@ def hyptan():
       radians = False
       break
 
-  a = float(input("\nTheta = "))
+  firstNum = float(input("\nTheta = "))
   
-  print(f"\ntanh({a}) =", end = " ")
+  print(f"\ntanh({firstNum}) =", end = " ")
 
   if radians:
 
-    calcHis.append([hypTanString, f": tanh({a}) = {math.tanh(a)}"])
+    calcHis.append([hypTanString, f": tanh({firstNum}) = {math.tanh(firstNum)}"])
 
-    return math.tanh(a)
+    return math.tanh(firstNum)
   else:
 
-    calcHis.append([hypTanString, f": tanh({a}) = {math.tanh(a*math.pi/180)}"])
+    calcHis.append([hypTanString, f": tanh({firstNum}) = {math.tanh(firstNum*math.pi/180)}"])
 
-    return math.tanh(a*math.pi/180)
+    return math.tanh(firstNum*math.pi/180)
 
 # Gets the user's name
 name = input("Hello, what is your name?\n") 
