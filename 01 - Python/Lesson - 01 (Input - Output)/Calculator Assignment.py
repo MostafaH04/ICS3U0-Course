@@ -8,9 +8,6 @@
 | Date     :  May 3rd 2021                    | 
 -----------------------------------------------
 '''
-# Link to repl.it file:
-# https://replit.com/@p00766641/Input-Output-Calculator-MH899733#main.py 
-
 # Instructions:
 '''
 1. The program begins, prompting the user to enter their name (string)
@@ -63,7 +60,7 @@ def animate(content):
 
   pass # does not return anything back to where the function was called
 
-# Initiallizing Functions for the calculator
+#Functions for the calculator
 
 # Addition
 def add():
@@ -364,8 +361,25 @@ def hyptan():
 
     return math.tanh(firstNum*math.pi/180)
 
+# This function carries out the process for the floor function
+def floor():
+  os.system("clear")
+  
+  moduloString = "Floor"
+  animate(moduloString)
+
+  firstNum = float(input("First Number: "))
+  secondNum = float(input("Second Number: "))
+
+  print(f"\nThe Remainder from the operation {firstNum} // {secondNum}, is", end = " ")
+
+  calcHis.append([moduloString, f": The Remainder from the operation {firstNum} // {secondNum}, is {firstNum%secondNum}"])
+
+  return firstNum // secondNum
+
 # Gets the user's name
 name = input("Hello, what is your name?\n") 
+
 
 while True:
   #Prints users name before the sentence (in a different way)
@@ -400,95 +414,108 @@ title = r"""
 """
 
 # List of possible functions
-functions = ["Addition", "Subtraction", "Mulitplication", "Division", "Remainder", "Sine", "Cosine", "Tangent", "Power", "Hyperbolic Sine","Hyperbolic Cosine", "Hyperbolic Tangent", "History", "Exit"]
+functions = ["Addition", "Subtraction", "Mulitplication", "Division", "Remainder", "Sine", "Cosine", "Tangent", "Power", "Hyperbolic Sine","Hyperbolic Cosine", "Hyperbolic Tangent", "Floor Division", "History", "Exit"]
 
 # User picks the function they want to use, this loop only breaks if the user wants to end the program
 while True:
-  # Clears the console
-  os.system('clear')
+  # trys running the program but if it runs into an issue, it will restart the calculator
+  try:
+    # Clears the console
+    os.system('clear')
 
-  # Displays the title "Calculator at the top of the screen.
-  # If not seen, make sure the console is big enough for it to be displayed properly
-  print(title,end = "\n\n\n")
+    # Displays the title "Calculator at the top of the screen.
+    # If not seen, make sure the console is big enough for it to be displayed properly
+    print(title,end = "\n\n\n")
 
-  # Displays the functions
-  for i in range(len(functions)):
+    # Displays the functions
+    for i in range(len(functions)):
 
-    # If the function being printed is a factor of 4, that means it is the 4th in the line so start a new line
-    if i%4 == 0:print("\n")
+      # If the function being printed is a factor of 4, that means it is the 4th in the line so start a new line
+      if i%4 == 0:print("\n")
+      
+      # Prints the number of the function then the function it self with spacing after it
+      print(i, functions[i],end = "   ")
+    print("\n\n")
+
+    # Infinite loop that makes sure the user is inputing an applicable number
+    while True:
+      # Displays the question prompting the user to choose a function and stores the answer
+      func = int(input(f"Pick a function between 0 and {len(functions)-1}:\n"))
+
+      # Makes sure the user is inputing an applicable number
+      if func >= 0 and func <= len(functions)-1:
+        break
     
-    # Prints the number of the function then the function it self with spacing after it
-    print(i, functions[i],end = "   ")
-  print("\n\n")
+    # If the user picked 0, this calls on the addition function
+    if func == 0:
+      print(add())
+    
+    # If the user picked 1, this calls on the subtraction function
+    elif func == 1:
+      print(diff())
 
-  # Infinite loop that makes sure the user is inputing an applicable number
-  while True:
-    # Displays the question prompting the user to choose a function and stores the answer
-    func = int(input(f"Pick a function between 0 and {len(functions)-1}:\n"))
+    # If the user picked 2, this calls on the Mulitplication function
+    elif func == 2:
+      print(multi())
+    
+    # If the user picked 3, this calls on the Dividsion function
+    elif func == 3:
+      print(divide())
+    
+    # If the user picked 4, this calls on the Remainder / Modulo function
+    elif func == 4:
+      print(modulo())
+    
+    # If the user picked 5, this calls on the Sine function
+    elif func == 5:
+      print(sine())
+    
+    # If the user picked 6, this calls on the Cosine function
+    elif func == 6:
+      print(cosine())
+    
+    # If the user picked 7, this calls on the Tangent function
+    elif func == 7:
+      print(tangent())
+    
+    # If the user picked 8, this calls on the power function
+    elif func == 8:
+      print(power())
 
-    # Makes sure the user is inputing an applicable number
-    if func >= 0 and func <= len(functions)-1:
+    # If the user picked 9, this calls on the Hypoerbolic Sin function
+    elif func == 9:
+      print(hypsin())
+    
+    # If the user picked 10, this calls on the Hyperbolic cosine function
+    elif func == 10:
+      print(hypcos())
+
+    # If the user picked 11, this calls on the Hyperbolic Tangent function
+    elif func == 11:
+      print(hyptan())
+
+    elif func == 12:
+      os.system("clear")
+      print(floor())
+    
+    # If the user picked 13, calls on the calculator history
+    elif func == 13:
+      os.system("clear")
+      for i in range(len(calcHis)):
+        print(i+1, calcHis[i][0], calcHis[i][1])
+
+
+    # If the user picked 14, this ends the program.
+    elif func == 14:
+      os.system("clear")
+      print(f"Good night! {name} :)")
       break
-  
-  # If the user picked 0, this calls on the addition function
-  if func == 0:
-    print(add())
-  
-  # If the user picked 1, this calls on the subtraction function
-  elif func == 1:
-    print(diff())
 
-  # If the user picked 2, this calls on the Mulitplication function
-  elif func == 2:
-    print(multi())
-  
-  # If the user picked 3, this calls on the Dividsion function
-  elif func == 3:
-    print(divide())
-  
-  # If the user picked 4, this calls on the Remainder / Modulo function
-  elif func == 4:
-    print(modulo())
-  
-  # If the user picked 5, this calls on the Sine function
-  elif func == 5:
-    print(sine())
-  
-  # If the user picked 6, this calls on the Cosine function
-  elif func == 6:
-    print(cosine())
-  
-  # If the user picked 7, this calls on the Tangent function
-  elif func == 7:
-    print(tangent())
-  
-  # If the user picked 8, this calls on the power function
-  elif func == 8:
-    print(power())
+    # Promts the user to type Enter in order to continue (makes sure the calculation is there until the user is done looking at it)
+    continueQ = input("\n\n\nPress Enter To Continue")
 
-  # If the user picked 9, this calls on the Hypoerbolic Sin function
-  elif func == 9:
-    print(hypsin())
-  
-  # If the user picked 10, this calls on the Hyperbolic cosine function
-  elif func == 10:
-    print(hypcos())
-
-  # If the user picked 11, this calls on the Hyperbolic Tangent function
-  elif func == 11:
-    print(hyptan())
-  
-  elif func == 12:
-    os.system("clear")
-    for i in range(len(calcHis)):
-      print(i+1, calcHis[i][0], calcHis[i][1])
-
-
-  # If the user picked 12, this ends the program.
-  elif func == 13:
-    os.system("clear")
-    print(f"Good night! {name} :)")
-    break
-
-  # Promts the user to type Enter in order to continue (makes sure the calculation is there until the user is done looking at it)
-  continueQ = input("\n\n\nPress Enter To Continue")
+  # raises the exception if an error occurs in the program
+  except:
+    print("Please enter values in the correct format. Restarting the Calculator")
+    input("Press Enter to Continue")
+    pass
