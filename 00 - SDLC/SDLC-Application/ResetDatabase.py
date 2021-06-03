@@ -1,9 +1,5 @@
 import json
 import infoScript
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import initialize_app
-from firebase_admin import db
 import reference
 
 ref = reference.refer()
@@ -32,5 +28,4 @@ def reset():
 		infoScript.showInfo(info).screen()
 		infoScript.showInfo(info).time()
 
-
-
+reset()

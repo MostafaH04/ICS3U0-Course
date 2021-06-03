@@ -65,14 +65,8 @@
                         "seats":[1,1,1,2,2,2,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True","True"],
-                            "4":["True","True"],
-                            "5":["True","True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["none","none","none","True","True","True","none","none"]
                         }
                     },
                     "all":
@@ -99,14 +93,8 @@
                         "seats":[2,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True","True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["True","none","none","none","none","none","none","none"]
                         }
                     },
                     "all":
@@ -114,14 +102,13 @@
                         "seats":[7,7,7,7,7,7,7,7],
                         "available":
                         {
-                            "0":["True","True","True","True","True","True","True"],
-                            "1":["True","True","True","True","True","True","True"],
-                            "2":["True","True","True","True","True","True","True"],
-                            "3":["True","True","True","True","True","True","True"],
-                            "4":["True","True","True","True","True","True","True"],
-                            "5":["True","True","True","True","True","True","True"],
-                            "6":["True","True","True","True","True","True","True"],
-                            "7":["True","True","True","True","True","True","True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["True","True","True","True","True","True","True","True"],
+                            "2":["True","True","True","True","True","True","True","True"],
+                            "3":["True","True","True","True","True","True","True","True"],
+                            "4":["True","True","True","True","True","True","True","True"],
+                            "5":["True","True","True","True","True","True","True","True"],
+                            "6":["True","True","True","True","True","True","True","True"]
                         }
                     
                     }
@@ -133,14 +120,7 @@
                         "seats":[1,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"]
                         }
                     },
                     "all":
@@ -148,14 +128,15 @@
                         "seats":[9,9,9,9,9,9,9,9],
                         "available":
                         {
-                            "0":["True","True","True","True","True","True","True","True","True"],
-                            "1":["True","True","True","True","True","True","True","True","True"],
-                            "2":["True","True","True","True","True","True","True","True","True"],
-                            "3":["True","True","True","True","True","True","True","True","True"],
-                            "4":["True","True","True","True","True","True","True","True","True"],
-                            "5":["True","True","True","True","True","True","True","True","True"],
-                            "6":["True","True","True","True","True","True","True","True","True"],
-                            "7":["True","True","True","True","True","True","True","True","True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["True","True","True","True","True","True","True","True"],
+                            "2":["True","True","True","True","True","True","True","True"],
+                            "3":["True","True","True","True","True","True","True","True"],
+                            "4":["True","True","True","True","True","True","True","True"],
+                            "5":["True","True","True","True","True","True","True","True"],
+                            "6":["True","True","True","True","True","True","True","True"],
+                            "7":["True","True","True","True","True","True","True","True"],
+                            "8":["True","True","True","True","True","True","True","True"]
                         }                    
                     }
                 },
@@ -166,14 +147,7 @@
                         "seats":[1,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"]
                         }
                     },
                     "all":
@@ -181,14 +155,11 @@
                         "seats":[4,4,4,4,4,4,4,4],
                         "available":
                         {
-                            "0":["True","True","True","True"],
-                            "1":["True","True","True","True"],
-                            "2":["True","True","True","True"],
-                            "3":["True","True","True","True"],
-                            "4":["True","True","True","True"],
-                            "5":["True","True","True","True"],
-                            "6":["True","True","True","True"],
-                            "7":["True","True","True","True"]
+                            "0":["True","True","True","True", "True","True","True","True"],
+                            "1":["True","True","True","True", "True","True","True","True"],
+                            "2":["True","True","True","True", "True","True","True","True"],
+                            "3":["True","True","True","True", "True","True","True","True"]
+
                         }
                     }
                 },
@@ -199,14 +170,7 @@
                         "seats":[1,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"]
                         }
                     },
                     "all":
@@ -214,14 +178,10 @@
                         "seats":[4,4,4,4,4,4,4,4],
                         "available":
                         {
-                            "0":["True","True","True","True"],
-                            "1":["True","True","True","True"],
-                            "2":["True","True","True","True"],
-                            "3":["True","True","True","True"],
-                            "4":["True","True","True","True"],
-                            "5":["True","True","True","True"],
-                            "6":["True","True","True","True"],
-                            "7":["True","True","True","True"]
+                            "0":["True","True","True","True", "True","True","True","True"],
+                            "1":["True","True","True","True", "True","True","True","True"],
+                            "2":["True","True","True","True", "True","True","True","True"],
+                            "3":["True","True","True","True", "True","True","True","True"]
                         }
                     }
                 }            
@@ -235,14 +195,8 @@
                         "seats":[1,1,1,2,2,2,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True","True"],
-                            "4":["True","True"],
-                            "5":["True","True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["none","none","none","True","True","True","none","none"]
                         }
                     },
                     "all":
@@ -269,14 +223,8 @@
                         "seats":[2,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True","True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["True","none","none","none","none","none","none","none"]
                         }
                     },
                     "all":
@@ -284,14 +232,13 @@
                         "seats":[7,7,7,7,7,7,7,7],
                         "available":
                         {
-                            "0":["True","True","True","True","True","True","True"],
-                            "1":["True","True","True","True","True","True","True"],
-                            "2":["True","True","True","True","True","True","True"],
-                            "3":["True","True","True","True","True","True","True"],
-                            "4":["True","True","True","True","True","True","True"],
-                            "5":["True","True","True","True","True","True","True"],
-                            "6":["True","True","True","True","True","True","True"],
-                            "7":["True","True","True","True","True","True","True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["True","True","True","True","True","True","True","True"],
+                            "2":["True","True","True","True","True","True","True","True"],
+                            "3":["True","True","True","True","True","True","True","True"],
+                            "4":["True","True","True","True","True","True","True","True"],
+                            "5":["True","True","True","True","True","True","True","True"],
+                            "6":["True","True","True","True","True","True","True","True"]
                         }
                     
                     }
@@ -303,14 +250,7 @@
                         "seats":[1,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"]
                         }
                     },
                     "all":
@@ -318,14 +258,15 @@
                         "seats":[9,9,9,9,9,9,9,9],
                         "available":
                         {
-                            "0":["True","True","True","True","True","True","True","True","True"],
-                            "1":["True","True","True","True","True","True","True","True","True"],
-                            "2":["True","True","True","True","True","True","True","True","True"],
-                            "3":["True","True","True","True","True","True","True","True","True"],
-                            "4":["True","True","True","True","True","True","True","True","True"],
-                            "5":["True","True","True","True","True","True","True","True","True"],
-                            "6":["True","True","True","True","True","True","True","True","True"],
-                            "7":["True","True","True","True","True","True","True","True","True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["True","True","True","True","True","True","True","True"],
+                            "2":["True","True","True","True","True","True","True","True"],
+                            "3":["True","True","True","True","True","True","True","True"],
+                            "4":["True","True","True","True","True","True","True","True"],
+                            "5":["True","True","True","True","True","True","True","True"],
+                            "6":["True","True","True","True","True","True","True","True"],
+                            "7":["True","True","True","True","True","True","True","True"],
+                            "8":["True","True","True","True","True","True","True","True"]
                         }                    
                     }
                 },
@@ -336,14 +277,7 @@
                         "seats":[1,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"]
                         }
                     },
                     "all":
@@ -351,14 +285,11 @@
                         "seats":[4,4,4,4,4,4,4,4],
                         "available":
                         {
-                            "0":["True","True","True","True"],
-                            "1":["True","True","True","True"],
-                            "2":["True","True","True","True"],
-                            "3":["True","True","True","True"],
-                            "4":["True","True","True","True"],
-                            "5":["True","True","True","True"],
-                            "6":["True","True","True","True"],
-                            "7":["True","True","True","True"]
+                            "0":["True","True","True","True", "True","True","True","True"],
+                            "1":["True","True","True","True", "True","True","True","True"],
+                            "2":["True","True","True","True", "True","True","True","True"],
+                            "3":["True","True","True","True", "True","True","True","True"]
+
                         }
                     }
                 },
@@ -369,14 +300,7 @@
                         "seats":[1,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"]
                         }
                     },
                     "all":
@@ -384,17 +308,13 @@
                         "seats":[4,4,4,4,4,4,4,4],
                         "available":
                         {
-                            "0":["True","True","True","True"],
-                            "1":["True","True","True","True"],
-                            "2":["True","True","True","True"],
-                            "3":["True","True","True","True"],
-                            "4":["True","True","True","True"],
-                            "5":["True","True","True","True"],
-                            "6":["True","True","True","True"],
-                            "7":["True","True","True","True"]
+                            "0":["True","True","True","True", "True","True","True","True"],
+                            "1":["True","True","True","True", "True","True","True","True"],
+                            "2":["True","True","True","True", "True","True","True","True"],
+                            "3":["True","True","True","True", "True","True","True","True"]
                         }
                     }
-                }
+                } 
             }
         },
         "2afternoon":
@@ -408,14 +328,8 @@
                         "seats":[1,1,1,2,2,2,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True","True"],
-                            "4":["True","True"],
-                            "5":["True","True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["none","none","none","True","True","True","none","none"]
                         }
                     },
                     "all":
@@ -442,14 +356,8 @@
                         "seats":[2,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True","True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["True","none","none","none","none","none","none","none"]
                         }
                     },
                     "all":
@@ -457,14 +365,13 @@
                         "seats":[7,7,7,7,7,7,7,7],
                         "available":
                         {
-                            "0":["True","True","True","True","True","True","True"],
-                            "1":["True","True","True","True","True","True","True"],
-                            "2":["True","True","True","True","True","True","True"],
-                            "3":["True","True","True","True","True","True","True"],
-                            "4":["True","True","True","True","True","True","True"],
-                            "5":["True","True","True","True","True","True","True"],
-                            "6":["True","True","True","True","True","True","True"],
-                            "7":["True","True","True","True","True","True","True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["True","True","True","True","True","True","True","True"],
+                            "2":["True","True","True","True","True","True","True","True"],
+                            "3":["True","True","True","True","True","True","True","True"],
+                            "4":["True","True","True","True","True","True","True","True"],
+                            "5":["True","True","True","True","True","True","True","True"],
+                            "6":["True","True","True","True","True","True","True","True"]
                         }
                     
                     }
@@ -476,14 +383,7 @@
                         "seats":[1,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"]
                         }
                     },
                     "all":
@@ -491,14 +391,15 @@
                         "seats":[9,9,9,9,9,9,9,9],
                         "available":
                         {
-                            "0":["True","True","True","True","True","True","True","True","True"],
-                            "1":["True","True","True","True","True","True","True","True","True"],
-                            "2":["True","True","True","True","True","True","True","True","True"],
-                            "3":["True","True","True","True","True","True","True","True","True"],
-                            "4":["True","True","True","True","True","True","True","True","True"],
-                            "5":["True","True","True","True","True","True","True","True","True"],
-                            "6":["True","True","True","True","True","True","True","True","True"],
-                            "7":["True","True","True","True","True","True","True","True","True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["True","True","True","True","True","True","True","True"],
+                            "2":["True","True","True","True","True","True","True","True"],
+                            "3":["True","True","True","True","True","True","True","True"],
+                            "4":["True","True","True","True","True","True","True","True"],
+                            "5":["True","True","True","True","True","True","True","True"],
+                            "6":["True","True","True","True","True","True","True","True"],
+                            "7":["True","True","True","True","True","True","True","True"],
+                            "8":["True","True","True","True","True","True","True","True"]
                         }                    
                     }
                 },
@@ -509,14 +410,7 @@
                         "seats":[1,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"]
                         }
                     },
                     "all":
@@ -524,14 +418,11 @@
                         "seats":[4,4,4,4,4,4,4,4],
                         "available":
                         {
-                            "0":["True","True","True","True"],
-                            "1":["True","True","True","True"],
-                            "2":["True","True","True","True"],
-                            "3":["True","True","True","True"],
-                            "4":["True","True","True","True"],
-                            "5":["True","True","True","True"],
-                            "6":["True","True","True","True"],
-                            "7":["True","True","True","True"]
+                            "0":["True","True","True","True", "True","True","True","True"],
+                            "1":["True","True","True","True", "True","True","True","True"],
+                            "2":["True","True","True","True", "True","True","True","True"],
+                            "3":["True","True","True","True", "True","True","True","True"]
+
                         }
                     }
                 },
@@ -542,14 +433,7 @@
                         "seats":[1,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"]
                         }
                     },
                     "all":
@@ -557,17 +441,13 @@
                         "seats":[4,4,4,4,4,4,4,4],
                         "available":
                         {
-                            "0":["True","True","True","True"],
-                            "1":["True","True","True","True"],
-                            "2":["True","True","True","True"],
-                            "3":["True","True","True","True"],
-                            "4":["True","True","True","True"],
-                            "5":["True","True","True","True"],
-                            "6":["True","True","True","True"],
-                            "7":["True","True","True","True"]
+                            "0":["True","True","True","True", "True","True","True","True"],
+                            "1":["True","True","True","True", "True","True","True","True"],
+                            "2":["True","True","True","True", "True","True","True","True"],
+                            "3":["True","True","True","True", "True","True","True","True"]
                         }
                     }
-                } 
+                }  
             },
             "15:00":
             {
@@ -578,14 +458,8 @@
                         "seats":[1,1,1,2,2,2,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True","True"],
-                            "4":["True","True"],
-                            "5":["True","True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["none","none","none","True","True","True","none","none"]
                         }
                     },
                     "all":
@@ -612,14 +486,8 @@
                         "seats":[2,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True","True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["True","none","none","none","none","none","none","none"]
                         }
                     },
                     "all":
@@ -627,14 +495,13 @@
                         "seats":[7,7,7,7,7,7,7,7],
                         "available":
                         {
-                            "0":["True","True","True","True","True","True","True"],
-                            "1":["True","True","True","True","True","True","True"],
-                            "2":["True","True","True","True","True","True","True"],
-                            "3":["True","True","True","True","True","True","True"],
-                            "4":["True","True","True","True","True","True","True"],
-                            "5":["True","True","True","True","True","True","True"],
-                            "6":["True","True","True","True","True","True","True"],
-                            "7":["True","True","True","True","True","True","True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["True","True","True","True","True","True","True","True"],
+                            "2":["True","True","True","True","True","True","True","True"],
+                            "3":["True","True","True","True","True","True","True","True"],
+                            "4":["True","True","True","True","True","True","True","True"],
+                            "5":["True","True","True","True","True","True","True","True"],
+                            "6":["True","True","True","True","True","True","True","True"]
                         }
                     
                     }
@@ -646,14 +513,7 @@
                         "seats":[1,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"]
                         }
                     },
                     "all":
@@ -661,14 +521,15 @@
                         "seats":[9,9,9,9,9,9,9,9],
                         "available":
                         {
-                            "0":["True","True","True","True","True","True","True","True","True"],
-                            "1":["True","True","True","True","True","True","True","True","True"],
-                            "2":["True","True","True","True","True","True","True","True","True"],
-                            "3":["True","True","True","True","True","True","True","True","True"],
-                            "4":["True","True","True","True","True","True","True","True","True"],
-                            "5":["True","True","True","True","True","True","True","True","True"],
-                            "6":["True","True","True","True","True","True","True","True","True"],
-                            "7":["True","True","True","True","True","True","True","True","True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["True","True","True","True","True","True","True","True"],
+                            "2":["True","True","True","True","True","True","True","True"],
+                            "3":["True","True","True","True","True","True","True","True"],
+                            "4":["True","True","True","True","True","True","True","True"],
+                            "5":["True","True","True","True","True","True","True","True"],
+                            "6":["True","True","True","True","True","True","True","True"],
+                            "7":["True","True","True","True","True","True","True","True"],
+                            "8":["True","True","True","True","True","True","True","True"]
                         }                    
                     }
                 },
@@ -679,14 +540,7 @@
                         "seats":[1,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"]
                         }
                     },
                     "all":
@@ -694,14 +548,11 @@
                         "seats":[4,4,4,4,4,4,4,4],
                         "available":
                         {
-                            "0":["True","True","True","True"],
-                            "1":["True","True","True","True"],
-                            "2":["True","True","True","True"],
-                            "3":["True","True","True","True"],
-                            "4":["True","True","True","True"],
-                            "5":["True","True","True","True"],
-                            "6":["True","True","True","True"],
-                            "7":["True","True","True","True"]
+                            "0":["True","True","True","True", "True","True","True","True"],
+                            "1":["True","True","True","True", "True","True","True","True"],
+                            "2":["True","True","True","True", "True","True","True","True"],
+                            "3":["True","True","True","True", "True","True","True","True"]
+
                         }
                     }
                 },
@@ -712,14 +563,7 @@
                         "seats":[1,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"]
                         }
                     },
                     "all":
@@ -727,17 +571,13 @@
                         "seats":[4,4,4,4,4,4,4,4],
                         "available":
                         {
-                            "0":["True","True","True","True"],
-                            "1":["True","True","True","True"],
-                            "2":["True","True","True","True"],
-                            "3":["True","True","True","True"],
-                            "4":["True","True","True","True"],
-                            "5":["True","True","True","True"],
-                            "6":["True","True","True","True"],
-                            "7":["True","True","True","True"]
+                            "0":["True","True","True","True", "True","True","True","True"],
+                            "1":["True","True","True","True", "True","True","True","True"],
+                            "2":["True","True","True","True", "True","True","True","True"],
+                            "3":["True","True","True","True", "True","True","True","True"]
                         }
                     }
-                } 
+                }  
             }
         },
         "3evening":
@@ -751,14 +591,8 @@
                         "seats":[1,1,1,2,2,2,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True","True"],
-                            "4":["True","True"],
-                            "5":["True","True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["none","none","none","True","True","True","none","none"]
                         }
                     },
                     "all":
@@ -785,14 +619,8 @@
                         "seats":[2,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True","True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["True","none","none","none","none","none","none","none"]
                         }
                     },
                     "all":
@@ -800,14 +628,13 @@
                         "seats":[7,7,7,7,7,7,7,7],
                         "available":
                         {
-                            "0":["True","True","True","True","True","True","True"],
-                            "1":["True","True","True","True","True","True","True"],
-                            "2":["True","True","True","True","True","True","True"],
-                            "3":["True","True","True","True","True","True","True"],
-                            "4":["True","True","True","True","True","True","True"],
-                            "5":["True","True","True","True","True","True","True"],
-                            "6":["True","True","True","True","True","True","True"],
-                            "7":["True","True","True","True","True","True","True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["True","True","True","True","True","True","True","True"],
+                            "2":["True","True","True","True","True","True","True","True"],
+                            "3":["True","True","True","True","True","True","True","True"],
+                            "4":["True","True","True","True","True","True","True","True"],
+                            "5":["True","True","True","True","True","True","True","True"],
+                            "6":["True","True","True","True","True","True","True","True"]
                         }
                     
                     }
@@ -819,14 +646,7 @@
                         "seats":[1,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"]
                         }
                     },
                     "all":
@@ -834,14 +654,15 @@
                         "seats":[9,9,9,9,9,9,9,9],
                         "available":
                         {
-                            "0":["True","True","True","True","True","True","True","True","True"],
-                            "1":["True","True","True","True","True","True","True","True","True"],
-                            "2":["True","True","True","True","True","True","True","True","True"],
-                            "3":["True","True","True","True","True","True","True","True","True"],
-                            "4":["True","True","True","True","True","True","True","True","True"],
-                            "5":["True","True","True","True","True","True","True","True","True"],
-                            "6":["True","True","True","True","True","True","True","True","True"],
-                            "7":["True","True","True","True","True","True","True","True","True"]
+                            "0":["True","True","True","True","True","True","True","True"],
+                            "1":["True","True","True","True","True","True","True","True"],
+                            "2":["True","True","True","True","True","True","True","True"],
+                            "3":["True","True","True","True","True","True","True","True"],
+                            "4":["True","True","True","True","True","True","True","True"],
+                            "5":["True","True","True","True","True","True","True","True"],
+                            "6":["True","True","True","True","True","True","True","True"],
+                            "7":["True","True","True","True","True","True","True","True"],
+                            "8":["True","True","True","True","True","True","True","True"]
                         }                    
                     }
                 },
@@ -852,14 +673,7 @@
                         "seats":[1,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"]
                         }
                     },
                     "all":
@@ -867,14 +681,11 @@
                         "seats":[4,4,4,4,4,4,4,4],
                         "available":
                         {
-                            "0":["True","True","True","True"],
-                            "1":["True","True","True","True"],
-                            "2":["True","True","True","True"],
-                            "3":["True","True","True","True"],
-                            "4":["True","True","True","True"],
-                            "5":["True","True","True","True"],
-                            "6":["True","True","True","True"],
-                            "7":["True","True","True","True"]
+                            "0":["True","True","True","True", "True","True","True","True"],
+                            "1":["True","True","True","True", "True","True","True","True"],
+                            "2":["True","True","True","True", "True","True","True","True"],
+                            "3":["True","True","True","True", "True","True","True","True"]
+
                         }
                     }
                 },
@@ -885,14 +696,7 @@
                         "seats":[1,1,1,1,1,1,1,1],
                         "available":
                         {
-                            "0":["True"],
-                            "1":["True"],
-                            "2":["True"],
-                            "3":["True"],
-                            "4":["True"],
-                            "5":["True"],
-                            "6":["True"],
-                            "7":["True"]
+                            "0":["True","True","True","True","True","True","True","True"]
                         }
                     },
                     "all":
@@ -900,17 +704,13 @@
                         "seats":[4,4,4,4,4,4,4,4],
                         "available":
                         {
-                            "0":["True","True","True","True"],
-                            "1":["True","True","True","True"],
-                            "2":["True","True","True","True"],
-                            "3":["True","True","True","True"],
-                            "4":["True","True","True","True"],
-                            "5":["True","True","True","True"],
-                            "6":["True","True","True","True"],
-                            "7":["True","True","True","True"]
+                            "0":["True","True","True","True", "True","True","True","True"],
+                            "1":["True","True","True","True", "True","True","True","True"],
+                            "2":["True","True","True","True", "True","True","True","True"],
+                            "3":["True","True","True","True", "True","True","True","True"]
                         }
                     }
-                } 
+                }  
             }
         }
     },
@@ -930,7 +730,7 @@
         },
         "2":
         {
-            "city": "Ottowa",
+            "city": "Ottawa",
             "street": "I definately know street names",
             "province": "ON"
         }
