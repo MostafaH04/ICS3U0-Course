@@ -136,5 +136,3 @@ class update():
                     oldPoints = users[key]["points"]
                     self.usersRef.child(key).update({"points": oldPoints + self.prizePoints})
                     print(self.usersRef.child(key).get())
-
-update().checkSeats("13:00","0")
