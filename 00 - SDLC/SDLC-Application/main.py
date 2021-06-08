@@ -4,6 +4,8 @@ from pygame._sdl2 import Window
 import reference
 from pygame import draw
 from pygame.constants import MOUSEBUTTONDOWN, MOUSEBUTTONUP, MOUSEMOTION
+import math
+import time
 from pygame.locals import (
     K_UP,
     K_DOWN,
@@ -38,7 +40,7 @@ pygame.init()
 
 #settings
 winName = "Mostafa's Movies"
-size = width, height = 1280, 720  #tuple
+size = width, height = 1280, 745  #tuple
 winPos = (100,100)
 
 root = pygame.display.set_mode(size, pygame.NOFRAME)
@@ -76,6 +78,12 @@ draggingWin = False
 
 maximized = False
 
+backImageCorn = pygame.image.load('corn.png')
+backImageFilm = pygame.image.load('film.png')
+backImageClack = pygame.image.load('clack.png')
+
+backImages = [backImageCorn, backImageFilm, backImageClack]
+
 while running:
     mousePos = pygame.mouse.get_pos()
 
@@ -102,7 +110,7 @@ while running:
                         maximized = True
                     else:
                         maximized = False
-                        size = width, height = (1280, 720)
+                        size = width, height = (1280, 745)
                         root = pygame.display.set_mode(size, pygame.NOFRAME)
                         window.position = (100,100)
                 
@@ -170,5 +178,33 @@ while running:
         currBorderImage = colorImage(borderImages[i-1], borderColours[i-1][0][0],borderColours[i-1][0][1], borderColours[i-1][0][2], borderColours[i-1][1])
         root.blit(currBorderImage, (width-(i*40),0))
 
+    #Main Display
+    # This commented code adds the wave shape in the background (Too laggy as it isnt an image / shape)
+    # for x in range(width):
+    #     for y in range(int(height/10)+50):
+    #         if y > (50*math.sin((1/200)*x)+50):
+    #             draw.rect(root, (255,255,255), (x+1, y+400, 1, 1))
+    
+    # Background
+    # Background - Rectangle Shape
+    draw.rect(root, (255,255,255), (0, 5 * height/ 8, width, height))
+
+    # Background - Images
+    # Images - Popcorn
+    backImages[0] = pygame.transform.scale(backImages[0], (300 * round(width/1280), 381 * round(height/720)))
+    
+    root.blit(backImages[0], (-(width/10),1 * height / 4))
+
+    # Images - Movie Tape
+    backImages[1] = pygame.transform.scale(backImages[1], (518 * round(width/1280), 768 * round(height/720)))
+    
+    root.blit(backImages[1], ((8 * width/10),(1 * height / 6)))
+
+    # Images - Movie clacker
+    backImages[2] = pygame.transform.scale(backImages[2], (132 * round(width/1280), 103 * round(height/720)))
+    
+    root.blit(backImages[2], ((0),(9 * height / 10)))
+
+    # Refresh Display
     pygame.display.update()
     
