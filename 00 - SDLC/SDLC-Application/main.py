@@ -37,6 +37,8 @@ def colorImage(image, r, g, b, colourArr):
     return pygame.surfarray.make_surface(imgArray)
 
 pygame.init()
+clock = pygame.time.Clock()
+font = pygame.font.Font('AdobeCleanBold.otf', 70)
 
 #settings
 winName = "Mostafa's Movies"
@@ -76,13 +78,18 @@ window.position = winPos
 oldPos = (0,0)
 draggingWin = False
 
+enterButtonColors = [[(15,54,225),(20,64,255)],[(26, 53, 173),(20, 55, 204)]]
+enterButtonHover = False
+
 maximized = False
 
-backImageCorn = pygame.image.load('corn.png')
-backImageFilm = pygame.image.load('film.png')
-backImageClack = pygame.image.load('clack.png')
+backImage = pygame.image.load('back.png')
 
-backImages = [backImageCorn, backImageFilm, backImageClack]
+titleImage = pygame.image.load("title.png")
+
+backLoaded = False
+
+
 
 while running:
     mousePos = pygame.mouse.get_pos()
@@ -95,6 +102,11 @@ while running:
 
         else:
             hoverStates[i-1] = False    
+
+    if mousePos[0] > width/2-250 and mousePos[0] < width/2+250 and mousePos[1] > height/2 and mousePos[1] < height/2 +100:
+        enterButtonHover = True
+    else:
+        enterButtonHover = False
 
     for event in pygame.event.get():
         if event.type == MOUSEBUTTONDOWN:
@@ -189,22 +201,45 @@ while running:
     # Background - Rectangle Shape
     draw.rect(root, (255,255,255), (0, 5 * height/ 8, width, height))
 
-    # Background - Images
-    # Images - Popcorn
-    backImages[0] = pygame.transform.scale(backImages[0], (300 * round(width/1280), 381 * round(height/720)))
-    
-    root.blit(backImages[0], (-(width/10),1 * height / 4))
+    # Main Page
 
-    # Images - Movie Tape
-    backImages[1] = pygame.transform.scale(backImages[1], (518 * round(width/1280), 768 * round(height/720)))
-    
-    root.blit(backImages[1], ((8 * width/10),(1 * height / 6)))
+    # Main - Background - Images
+    tempBackImage = pygame.transform.scale(backImage, (round(1920 * (width/1920)), round(1080 * (height/1080))))
+    root.blit(tempBackImage, (0,0))
 
-    # Images - Movie clacker
-    backImages[2] = pygame.transform.scale(backImages[2], (132 * round(width/1280), 103 * round(height/720)))
+    # Title
+    root.blit(titleImage, (width/2 - 250,0))
+
+    # Button
+    if enterButtonHover == True:
+        i = 1
+    else:
+        i = 0
+    buttonBackColors = enterButtonColors[i]
+    draw.rect(root, buttonBackColors[0], (width/2-245, height/2+5, 500, 100), border_radius= 4)
+    draw.rect(root, buttonBackColors[1], (width/2-250, height/2, 500, 100), border_radius= 4)    
+
+    # Button - Text
+    enterButtonText = font.render('ENTER', True, (255,255,255), buttonBackColors[1])
+    enterButtonRect = enterButtonText.get_rect()
+    enterButtonRect.center = (int(width/2), int(height/2)+50)
+    root.blit(enterButtonText, enterButtonRect)
+
+    # Movie Page
+    # Logo
+    root.blit(titleImage, (width/2 - 250,0))
+    # Navigator
+    # Movies
+    # Slider
     
-    root.blit(backImages[2], ((0),(9 * height / 10)))
+    # Seat selection
+
+    # Sign In
+
+    # Ticket Output
+
 
     # Refresh Display
     pygame.display.update()
+    clock.tick(120)
     
