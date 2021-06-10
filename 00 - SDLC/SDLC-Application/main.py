@@ -89,7 +89,15 @@ titleImage = pygame.image.load("title.png")
 
 backLoaded = False
 
+movieImages = []
+for i in range(5):
+    movieImages.append(pygame.image.load(f"{i+1}.png"))
+print(movieImages)
+firstThree = True
+secondThree = False
 
+mainPage = True
+moviePage = False
 
 while running:
     mousePos = pygame.mouse.get_pos()
@@ -103,7 +111,7 @@ while running:
         else:
             hoverStates[i-1] = False    
 
-    if mousePos[0] > width/2-250 and mousePos[0] < width/2+250 and mousePos[1] > height/2 and mousePos[1] < height/2 +100:
+    if mainPage == True and mousePos[0] > width/2-250 and mousePos[0] < width/2+250 and mousePos[1] > height/2 and mousePos[1] < height/2 +100:
         enterButtonHover = True
     else:
         enterButtonHover = False
@@ -126,6 +134,10 @@ while running:
                         root = pygame.display.set_mode(size, pygame.NOFRAME)
                         window.position = (100,100)
                 
+                if enterButtonHover == True:
+                    mainPage = False
+                    moviePage = True
+
                 if not maximized:
                     if draggingWin == False:
                         mousePos = pygame.mouse.get_pos()
@@ -202,34 +214,58 @@ while running:
     draw.rect(root, (255,255,255), (0, 5 * height/ 8, width, height))
 
     # Main Page
+    if mainPage == True:
+        # Main - Background - Images
+        tempBackImage = pygame.transform.scale(backImage, (round(1920 * (width/1920)), round(1080 * (height/1080))))
+        root.blit(tempBackImage, (0,0))
 
-    # Main - Background - Images
-    tempBackImage = pygame.transform.scale(backImage, (round(1920 * (width/1920)), round(1080 * (height/1080))))
-    root.blit(tempBackImage, (0,0))
+        # Title
+        root.blit(titleImage, (width/2 - 250,0))
 
-    # Title
-    root.blit(titleImage, (width/2 - 250,0))
+        # Button
+        if enterButtonHover == True:
+            i = 1
+        else:
+            i = 0
+        buttonBackColors = enterButtonColors[i]
+        draw.rect(root, buttonBackColors[0], (width/2-245, height/2+5, 500, 100), border_radius= 4)
+        draw.rect(root, buttonBackColors[1], (width/2-250, height/2, 500, 100), border_radius= 4)    
 
-    # Button
-    if enterButtonHover == True:
-        i = 1
-    else:
-        i = 0
-    buttonBackColors = enterButtonColors[i]
-    draw.rect(root, buttonBackColors[0], (width/2-245, height/2+5, 500, 100), border_radius= 4)
-    draw.rect(root, buttonBackColors[1], (width/2-250, height/2, 500, 100), border_radius= 4)    
-
-    # Button - Text
-    enterButtonText = font.render('ENTER', True, (255,255,255), buttonBackColors[1])
-    enterButtonRect = enterButtonText.get_rect()
-    enterButtonRect.center = (int(width/2), int(height/2)+50)
-    root.blit(enterButtonText, enterButtonRect)
+        # Button - Text
+        enterButtonText = font.render('ENTER', True, (255,255,255), buttonBackColors[1])
+        enterButtonRect = enterButtonText.get_rect()
+        enterButtonRect.center = (int(width/2), int(height/2)+50)
+        root.blit(enterButtonText, enterButtonRect)
 
     # Movie Page
-    # Logo
-    root.blit(titleImage, (width/2 - 250,0))
-    # Navigator
-    # Movies
+    elif moviePage == True:
+        # Logo
+        tempTitle = pygame.transform.scale(titleImage, (200, 200))
+        root.blit(tempTitle, (0,-30))
+        
+        # Title
+        titleText = font.render('MOVIES', True, (20,64,255), (57, 237, 222))
+        titleTextRect = titleText.get_rect()
+        titleTextRect.center = (int(width/2), 200)
+        root.blit(titleText, titleTextRect)
+
+        # Navigator
+        
+        # Movies
+        if firstThree == True:
+            currMovImg = pygame.transform.scale(movieImages[0], (270,405))
+            root.blit(currMovImg, (int(width/4 - 135),int(1*height/4)))
+            currMovImg = pygame.transform.scale(movieImages[1], (270,405))
+            root.blit(currMovImg, (int(width/2 - 135),int(1*height/4)))
+            currMovImg = pygame.transform.scale(movieImages[2], (270,405))
+            root.blit(currMovImg, (int(3*width/4 - 135),int(1*height/4)))
+
+        elif secondThree == True:
+            print("test")
+
+
+
+        
     # Slider
     
     # Seat selection
