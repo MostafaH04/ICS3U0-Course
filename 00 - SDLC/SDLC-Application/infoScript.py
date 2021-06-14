@@ -26,14 +26,9 @@ class showInfo(set):
     def time(self):
         times = self.times
         print("\nTimes:\n")
+        timeList = []
         for i in times:
-            print(i)
             for j in times[i]:
-                print(f"{j}:")
-                for k in times[i][j]:
-                    print(f"Screen {int(k)+1}")
-                    for l in times[i][j][k]:
-                        print(l)
-                        print(times[i][j][k][l]['seats'])
-                        print("\n")
-        return times
+                print(j)
+                timeList.append(j)
+        return timeList

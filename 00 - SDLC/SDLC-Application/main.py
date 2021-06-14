@@ -3,6 +3,7 @@ from pygame import color
 from pygame._sdl2 import Window
 import reference
 import infoScript as inf
+import updateScript as upd
 from pygame import draw
 from pygame.constants import MOUSEBUTTONDOWN, MOUSEBUTTONUP, MOUSEMOTION
 import math
@@ -112,7 +113,17 @@ movieHover = [False, False, False]
 
 data = reference.refer().get()
 movieInfo = inf.showInfo(data).screen()
+timeInfo = inf.showInfo(data).time()
 print(movieInfo)
+print(timeInfo)
+
+selection = False
+pickedMovie = None
+
+timeSelection = False
+timeHover = [False, False, False, False, False]
+
+seatSelection = False
 
 while running:
     mousePos = pygame.mouse.get_pos()
@@ -132,29 +143,36 @@ while running:
         enterButtonHover = False
     
     if moviePage == True:
-        #width - 100, width-130, int(1*height/4)+333, int(1*height/4)+273
-        if firstThree == True:
-            if movieSlidingAnim1 != True and mousePos[0] > (width - 130) and mousePos[0] < (width - 100) and mousePos[1] < int(1*height/4)+333 and mousePos[1] > int(1*height/4)+273:
-                sliderHover = True
-            else:
-                sliderHover = False
-        
-        if secondThree == True:
-            if movieSlidingAnim2 != True and mousePos[0] > 100 and mousePos[0] < 130 and mousePos[1] < int(1*height/4)+333 and mousePos[1] > int(1*height/4)+273:
-                sliderHover = True
-            else:
-                sliderHover = False
-        
-        #(int(width/4 - 135 + slidingFactor1),int(1*height/4)+100)
-        for i in range(1,4):
-            if mousePos[0] > int(i * width/4 - 135) and mousePos[0] < int(i * width/4 + 135) and mousePos[1] > int(1*height/4 +100) and mousePos[1] < int(1*height/4 +505):
-                if (i-1) < 2:
-                    movieHover[i-1] = True
+        if selection == False:
+            if firstThree == True:
+                if movieSlidingAnim1 != True and mousePos[0] > (width - 130) and mousePos[0] < (width - 100) and mousePos[1] < int(1*height/4)+333 and mousePos[1] > int(1*height/4)+273:
+                    sliderHover = True
                 else:
-                    if firstThree:
+                    sliderHover = False
+            
+            if secondThree == True:
+                if movieSlidingAnim2 != True and mousePos[0] > 100 and mousePos[0] < 130 and mousePos[1] < int(1*height/4)+333 and mousePos[1] > int(1*height/4)+273:
+                    sliderHover = True
+                else:
+                    sliderHover = False
+            
+            for i in range(1,4):
+                if mousePos[0] > int(i * width/4 - 135) and mousePos[0] < int(i * width/4 + 135) and mousePos[1] > int(1*height/4 +100) and mousePos[1] < int(1*height/4 +505):
+                    if (i-1) < 2:
                         movieHover[i-1] = True
-            else:
-                movieHover[i-1] = False
+                    else:
+                        if firstThree:
+                            movieHover[i-1] = True
+                else:
+                    movieHover[i-1] = False
+
+        else:
+            if timeSelection:
+                for i in range(len(timeInfo)):
+                    if mousePos[0] > int(width/2 - 60) and mousePos[0] < int(width/2 + 60) and mousePos[1] > int(height/2 - 115 + i*70) and mousePos[1] < int(height/2 - 65 + i*70):                  
+                        timeHover[i] = True
+                    else:
+                        timeHover[i] = False         
             
     for event in pygame.event.get():
         if event.type == MOUSEBUTTONDOWN:
@@ -186,7 +204,24 @@ while running:
                         slidingFactor1 = 0
                         movieSlidingAnim2 = True
 
+                if selection and ((mousePos[0] > 0 and mousePos[0] < int(width/2 - 150)) or (mousePos[0] > int(width/2 + 150) and mousePos[0] < width) or (mousePos[1] > 25 and mousePos[1] < int(height/2-150)) or (mousePos[1] > int(height/2 + 150) and mousePos[1] < height)):
+                    selection = False
+                    timeSelection = False
                 
+                for i in range(len(movieHover)):
+                    if movieHover[i]:
+                        if firstThree:
+                            print(movieInfo[i])
+                            pickedMovie = i
+                            movieHover[i] = False
+                            timeSelection = True
+                            selection = True
+                        elif secondThree and i!= 2:
+                            print(movieInfo[i+3])
+                            pickedMovie = i+3
+                            selection = True
+                            timeSelection = True
+                            movieHover[i] = False
 
 
                 if not maximized:
@@ -370,7 +405,7 @@ while running:
                     
         # Slider
         if sliderHover:
-                sliderColor = sliderColours[0]
+            sliderColor = sliderColours[0]
         else:
             sliderColor = sliderColours[1]
 
@@ -378,11 +413,39 @@ while running:
             draw.polygon(root, sliderColor, [(width - 100, int(1*height/4)+303), (width-130, int(1*height/4)+333), (width-130, int(1*height/4)+273)])
         else:
             draw.polygon(root, sliderColor, [(100, int(1*height/4)+303), (130, int(1*height/4)+333), (130, int(1*height/4)+273)])
-    # Seat selection
+    
+        # selection background
+        if selection:
+            select = pygame.Surface((width,height))
+            select.set_alpha(200)
+            select.fill((235,235,235))
+            root.blit(select, (0, 25))
+            draw.rect(root, (255,255,255), (int(width/2 - 250), int(height/2 - 250), 500, 500), border_radius= 10)
+        
+            # time selection
+            if timeSelection:
+                timeTitleText = font.render('Times', True, (20,64,255))
+                timeTitleTextRect = timeTitleText.get_rect()
+                timeTitleTextRect.center = (int(width/2), int(height/2 - 180))
+                root.blit(timeTitleText, timeTitleTextRect)
 
-    # Sign In
+                for i in range(len(timeInfo)):
+                    if timeHover[i] == True:
+                        timeBorderColor = (210, 210, 210)
+                    else:
+                        timeBorderColor = (235, 235, 235)
 
-    # Ticket Output
+                    draw.rect(root, timeBorderColor, (int(width/2 - 60), int(height/2 - 115 + i*70), 120, 50), border_radius= 25)
+                    timeText = font2.render(timeInfo[i], True, (0,0,0))
+                    timeRect = timeText.get_rect()
+                    timeRect.center = (int(width/2), int(height/2 - 90 + (i*70)))
+                    root.blit(timeText, timeRect)
+
+            # Seat selection
+
+            # Sign In
+
+            # Ticket Output
 
 
     # Refresh Display
