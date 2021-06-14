@@ -2,6 +2,7 @@ import pygame
 from pygame import color
 from pygame._sdl2 import Window
 import reference
+import infoScript as inf
 from pygame import draw
 from pygame.constants import MOUSEBUTTONDOWN, MOUSEBUTTONUP, MOUSEMOTION
 import math
@@ -39,6 +40,7 @@ def colorImage(image, r, g, b, colourArr):
 pygame.init()
 clock = pygame.time.Clock()
 font = pygame.font.Font('AdobeCleanBold.otf', 70)
+font2 = pygame.font.Font('AdobeCleanBold.otf', 20)
 
 #settings
 winName = "Mostafa's Movies"
@@ -99,6 +101,19 @@ secondThree = False
 mainPage = True
 moviePage = False
 
+sliderColours = [(15,54,225), (26, 53, 173)]
+sliderHover = False
+
+movieSlidingAnim1 = False
+movieSlidingAnim2 = False
+slidingFactor1 = 0
+
+movieHover = [False, False, False]
+
+data = reference.refer().get()
+movieInfo = inf.showInfo(data).screen()
+print(movieInfo)
+
 while running:
     mousePos = pygame.mouse.get_pos()
 
@@ -115,7 +130,32 @@ while running:
         enterButtonHover = True
     else:
         enterButtonHover = False
-
+    
+    if moviePage == True:
+        #width - 100, width-130, int(1*height/4)+333, int(1*height/4)+273
+        if firstThree == True:
+            if movieSlidingAnim1 != True and mousePos[0] > (width - 130) and mousePos[0] < (width - 100) and mousePos[1] < int(1*height/4)+333 and mousePos[1] > int(1*height/4)+273:
+                sliderHover = True
+            else:
+                sliderHover = False
+        
+        if secondThree == True:
+            if movieSlidingAnim2 != True and mousePos[0] > 100 and mousePos[0] < 130 and mousePos[1] < int(1*height/4)+333 and mousePos[1] > int(1*height/4)+273:
+                sliderHover = True
+            else:
+                sliderHover = False
+        
+        #(int(width/4 - 135 + slidingFactor1),int(1*height/4)+100)
+        for i in range(1,4):
+            if mousePos[0] > int(i * width/4 - 135) and mousePos[0] < int(i * width/4 + 135) and mousePos[1] > int(1*height/4 +100) and mousePos[1] < int(1*height/4 +505):
+                if (i-1) < 2:
+                    movieHover[i-1] = True
+                else:
+                    if firstThree:
+                        movieHover[i-1] = True
+            else:
+                movieHover[i-1] = False
+            
     for event in pygame.event.get():
         if event.type == MOUSEBUTTONDOWN:
             if event.button == 1:
@@ -137,6 +177,17 @@ while running:
                 if enterButtonHover == True:
                     mainPage = False
                     moviePage = True
+
+                if sliderHover == True:
+                    if firstThree == True:
+                        slidingFactor1 = 0
+                        movieSlidingAnim1 = True
+                    else:
+                        slidingFactor1 = 0
+                        movieSlidingAnim2 = True
+
+                
+
 
                 if not maximized:
                     if draggingWin == False:
@@ -251,23 +302,82 @@ while running:
 
         # Navigator
         
+        # Sliding animation
+        if movieSlidingAnim1:
+            if slidingFactor1 > -(width):
+                slidingFactor1 -= 50
+            else:
+                slidingFactor1 = 0
+                firstThree = False
+                secondThree = True
+                movieSlidingAnim1 = False
+        
+        if movieSlidingAnim2:
+            if slidingFactor1 < (width):
+                slidingFactor1 += 50
+            else:
+                slidingFactor1 = 0
+                secondThree = False
+                firstThree = True
+                movieSlidingAnim2 = False
+
         # Movies
         if firstThree == True:
-            currMovImg = pygame.transform.scale(movieImages[0], (270,405))
-            root.blit(currMovImg, (int(width/4 - 135),int(1*height/4)))
-            currMovImg = pygame.transform.scale(movieImages[1], (270,405))
-            root.blit(currMovImg, (int(width/2 - 135),int(1*height/4)))
-            currMovImg = pygame.transform.scale(movieImages[2], (270,405))
-            root.blit(currMovImg, (int(3*width/4 - 135),int(1*height/4)))
+            for i in range(3):
+                currMovImg = pygame.transform.scale(movieImages[i], (270,405))
+                root.blit(currMovImg, (int((i+1)*width/4 - 135 + slidingFactor1),int(1*height/4)+100))
+
+            if movieSlidingAnim1 != True:
+                for i in range(len(movieHover)):
+                    if movieHover[i]:
+                        hoverRect = pygame.Surface((270,405))
+                        hoverRect.set_alpha(240)
+                        hoverRect.fill((245,245,245))
+                        root.blit(hoverRect, (int((i+1) * width/4 - 135 + slidingFactor1),int(1*height/4)+100))
+
+                        currInfo = movieInfo[i]
+                        lines = [f"Screen #: {i+1}", f"Name: {currInfo['name']}", f"Genre: {currInfo['genre']}", f"Seats #: {currInfo['seats']}", f"Time: {currInfo['time']}hrs"]
+                            
+                        for j in range(len(lines)):
+                            movieText = font2.render(lines[j], True, (20,64,255))
+                            movieTextRect = titleText.get_rect()
+                            movieTextRect.center = (int((i+1) * width/4), int(1*height/4)+ 135 + 40*(j+1))
+                            root.blit(movieText, movieTextRect)
 
         elif secondThree == True:
-            print("test")
+            for i in range(2):
+                currMovImg = pygame.transform.scale(movieImages[i+3], (270,405))
+                root.blit(currMovImg, (int((i+1) * width/4 - 135 + slidingFactor1),int(1*height/4)+100))
 
+            if movieSlidingAnim2 != True:
+                for i in range(len(movieHover)):
+                    if i != 2:
+                        if movieHover[i]:
+                            hoverRect = pygame.Surface((270,405))
+                            hoverRect.set_alpha(240)
+                            hoverRect.fill((245,245,245))
+                            root.blit(hoverRect, (int((i+1) * width/4 - 135 + slidingFactor1),int(1*height/4)+100))
+                            
+                            currInfo = movieInfo[i+3]
+                            lines = [f"Screen #: {i+4}", f"Name: {currInfo['name']}", f"Genre: {currInfo['genre']}", f"Seats #: {currInfo['seats']}", f"Time: {currInfo['time']}hrs"]
+                                
+                            for j in range(len(lines)):
+                                movieText = font2.render(lines[j], True, (20,64,255))
+                                movieTextRect = titleText.get_rect()
+                                movieTextRect.center = (int((i+1) * width/4), int(1*height/4)+ 135 + 40*(j+1))
+                                root.blit(movieText, movieTextRect)
 
+                    
+        # Slider
+        if sliderHover:
+                sliderColor = sliderColours[0]
+        else:
+            sliderColor = sliderColours[1]
 
-        
-    # Slider
-    
+        if firstThree == True:
+            draw.polygon(root, sliderColor, [(width - 100, int(1*height/4)+303), (width-130, int(1*height/4)+333), (width-130, int(1*height/4)+273)])
+        else:
+            draw.polygon(root, sliderColor, [(100, int(1*height/4)+303), (130, int(1*height/4)+333), (130, int(1*height/4)+273)])
     # Seat selection
 
     # Sign In
@@ -277,5 +387,5 @@ while running:
 
     # Refresh Display
     pygame.display.update()
-    clock.tick(120)
+    clock.tick(1000)
     

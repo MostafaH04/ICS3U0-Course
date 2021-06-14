@@ -1,3 +1,6 @@
+from reference import refer
+from firebase_admin import db
+
 class showInfo(set):
     def __init__(self, set):
         self.screens = set['screens']
@@ -6,12 +9,10 @@ class showInfo(set):
 
     def screen(self):
         screens = self.screens
-        outScreen = []
-        for i in range(len(screens)):
-            outScreen.append([])
-            for j in screens[str(i)]:
-                outScreen[int(i)].append(screens[str(i)][j])
-        print(outScreen)
+        print(screens)
+        outScreen = screens
+        for i in outScreen:
+            print(i)
         return outScreen
 
     def user(self):
