@@ -28,7 +28,7 @@ class update():
         try:
             users = self.getUsers()
             if newUsername in users:
-                return "Account already exists"
+                return False
 
             creditHash = hashlib.sha256(str(creditCard).encode()).hexdigest()
             points = self.startingPoints
@@ -40,7 +40,7 @@ class update():
                 "email": userEmail
             }
             self.usersRef.push(newUserData)
-            return "Account added to the database"
+            return True
         
         except:
             return "An error has occured. Please try again at a later time"
