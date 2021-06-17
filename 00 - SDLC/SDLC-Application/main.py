@@ -70,55 +70,51 @@ borderMinusImage = startingBorderMinusImage.copy() # Same idea as above but for 
 borderImages = [borderXimage, borderSquareImage, borderMinusImage] # Stores the different icons in array (to easily access them together)
 
 window.position = winPos # sets the position of the window to the intial position set at winPos variable
-oldPos = (100,100) # begins a variable called oldPos and is set to 0,0 (used for moving window)
-draggingWin = False
+oldPos = (0,0) # begins a variable called oldPos and is set to 0,0 (used for moving window)
+draggingWin = False # initiates boolean that represents if the window is being dragged
+maximized = False # Iniates boolean that represents if the window is maximized
 
-enterButtonColors = [[(15,54,225),(20,64,255)],[(26, 53, 173),(20, 55, 204)]]
-enterButtonHover = False
+enterButtonColors = [[(15,54,225),(20,64,255)],[(26, 53, 173),(20, 55, 204)]] # array that repersents shadow and foreground colours for the enter button on enter page when hovered and not hovered
+enterButtonHover = False # initiates a boolean that represents if the enterButton is beign hovered or not
 
-maximized = False
+backImage = pygame.image.load('back.png') #Loads the background image for the enter page (in 1080p)
 
-backImage = pygame.image.load('back.png')
+titleImage = pygame.image.load("title.png") # Loads the Image for the logo of the movie theatre
 
-titleImage = pygame.image.load("title.png")
+movieImages = [] # Initiates an array that will be used to store the different movie images to be displayed
+# goes through numbers 1 to 5 to load the images labeld 1.png till 5.png
+for i in range(1,6):
+    movieImages.append(pygame.image.load(f"{i}.png"))
+# The movie page displays 3 movies at a time max, following booleans represent which 3 are displayed
+firstThree = True # Sets the first three to be displayed
+secondThree = False # Sets the second three to be displayed
 
-backLoaded = False
+mainPage = True # Iniates boolean for main page (starts true because main page starts first [with enter button])
+moviePage = False # Initiates boolean for movie page (starts false, on after user presses enter to display movies)
 
-movieImages = []
-for i in range(5):
-    movieImages.append(pygame.image.load(f"{i+1}.png"))
-print(movieImages)
-firstThree = True
-secondThree = False
+sliderColours = [(15,54,225), (26, 53, 173)] # Array that represents the hover and non hover colours for the arrow that slide the movies to the right and left on movie page
+sliderHover = False # Initiates the hover status of the slider buttons to false
 
-mainPage = True
-moviePage = False
+movieSlidingAnim1 = False # Initiates boolean for the status of the animation for the first 3 movies
+movieSlidingAnim2 = False # Initiates boolean for the status of the animation for the second 3 movies (only 2)
+slidingFactor1 = 0 # The variable used to move the movies during the animations
 
-sliderColours = [(15,54,225), (26, 53, 173)]
-sliderHover = False
+movieHover = [False, False, False] # Boolean Array with each element representing which movie is hovered on the screen (3 becuase their is a max of 3 movies displayed on the screen)
 
-movieSlidingAnim1 = False
-movieSlidingAnim2 = False
-slidingFactor1 = 0
+data = reference.refer().get() # using the reference script in the directory this gets the reference to the data base, and uses the .get() method in the firebase_admin library to get the information in the database as a set and stores it in data
+movieInfo = inf.showInfo(data).screen() # uses the showInfo class in the infoScript file in the directory to retrieve information about the possible screens (movies) using the data retrieved from the database
+timeInfo = inf.showInfo(data).time() # uses the showInfo class in the inforScript file in the directory to retrieve information about the show times using the data retrieved from the database
 
-movieHover = [False, False, False]
+selection = False # Boolean variable used to denote if the user is currently picking a movie (basically when the frame for choosing a movie and entering information pops up)
+pickedMovie = None # Empty variable that will be used to store the movie that is picked by the user
 
-data = reference.refer().get()
-movieInfo = inf.showInfo(data).screen()
-timeInfo = inf.showInfo(data).time()
-print(movieInfo)
-print(timeInfo)
+timeSelection = False # Boolean Varaible used to denote if the user is picking the time for the movie (used to know which step of selection the user is on)
+timeHover = [False, False, False, False, False] # Boolean array used to represent which time is being hovered (used to know which time the user is currently over)
+pickedTime = None # Empty variable that will be used to store the the index of the time picked in the timeInfo array (the one retrieved from the database information)
 
-selection = False
-pickedMovie = None
-
-timeSelection = False
-timeHover = [False, False, False, False, False]
-pickedTime = None
-
-seatSelection = False
-totalSeatCalculated = False
-pickedSeats = []
+seatSelection = False # Boolean variable used to denote if the user is currently picking their seat for the movie (used to know which step of the selection the user is on, if this is true, the user is picking their seats)
+totalSeatCalculated = False # Boolean variable used to denote if the information about the seats at a screen, this is used in order to constantly update the status of the seats after the user opens the program, rather than once only when opening hte program (in the case that another user picks that seat )
+pickedSeats = [] # Empty array/ list used to store the seats that are selected by the user (as the user picks something it is added[appended] else if they click it again or exit out, it is removed or [popped])
 hoveredSeat = [[0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
@@ -127,25 +123,25 @@ hoveredSeat = [[0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0]
-]
-seatsSelected = len(pickedSeats)
+] # 2D 10 x 8 Array used to denote the seats are hoverd in a screen (this represents the maximum possible screen size such that it is compatitable for all the screens)
+seatsSelected = 0 # Empty variable [int type] used to represent the number of seats selected (used to keep track, and make sure it isnt over 10)
 
-seatContinue = False
+seatContinue = False # Boolean variable used to denote if the continue button in the seat tab is hovered or not
 
-signInPage = False
-signInContinue = False
-signUpHover = False
-signUpPage = False
+signInPage = False # Boolean variable used to denote if the user is currently on the sign in page of the selection process
+signInContinue = False # Boolean variable used to denote if the user is hovering the sign in button in the sign in / sign up page
+signUpHover = False # Boolean variable used to denote if the user is hovering the sign up button in the sign in/ sign up page
+signUpPage = False # Boolean variable used to denote if the user is currently on the sign up page of teh selection process
 
-usernameDefault = 'Username'
-passwordDefault = 'Password'
-creditcardDefault = 'Credit Card'
-emailDefault = 'email@email.com'
+usernameDefault = 'Username' # String variable that stores the default value for the username (returns to this state if the user exits out) - Used in both sign up and sign in pages
+passwordDefault = 'Password' # String variable that stores the default value for the password (returns to this state if the user exits out) - Used in both sign up and sign in pages
+creditcardDefault = 'Credit Card' # String variable that stores the default value for the credit card (returns to this state if the user exits out) - Used only in sign up
+emailDefault = 'email@email.com' # String variable that stores the default value for the email (returns to this state if the user exits out) - Used only in sign up
 
-username = usernameDefault
-password = passwordDefault
-creditCard = creditcardDefault
-email = emailDefault
+username = usernameDefault # Variable used to store users username on sign up and sign in (set to the default username variable at the start)
+password = passwordDefault # Variable used to store users password on sign up and sign in (set to the default password variable at the start)
+creditCard = creditcardDefault # Variable used to store users creditCard on sign up (set to the default credit cardvariable at the start)
+email = emailDefault # Variable used to store users username on sign up(set to the default email variable at the start)
 
 userTyping = False
 passTyping = False
@@ -383,6 +379,11 @@ while running:
                                 print("Correct Info")
                                 signInPage = False
                                 signUpPage = False
+                                for seats in range(len(pickedSeats)):
+                                    row = pickedSeats[seats][1]
+                                    coloumn = pickedSeats[seats][0]
+                                    upd.update().bookSeat(pickedTime, row, coloumn, pickedMovie)
+                                    upd.update().addPoints(username, password)
                                 ticketOut = True
                             else:
                                 print("Try again")
