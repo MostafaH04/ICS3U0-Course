@@ -1,3 +1,16 @@
+############################################
+#                                          #
+#  Name: Mostafa Hussein                   #
+#  Student Number: 899733                  #
+#  Cohort: C                               #
+#  Teacher: Mr. Ghorvei                    #
+#  Class: ICS3U0                           #
+#  Assignment: Movie Theatre Ordering      #
+#  Due Date: June 22nd 2021                #
+#                                          #
+############################################
+
+
 import pygame # importing the pygame library
 from pygame import color # importing the colour class in the pygame library
 from pygame._sdl2 import Window # importing the window class form the pygame library (allows me to move the window using the custom border made for the program)
@@ -364,7 +377,7 @@ while running:
                             password = passwordDefault # resets the password variable
                             creditCard = creditcardDefault # resets the credit card variable 
                             email = emailDefault # resets the email variable
-                        elif checkInfo('signup'): # if the page is already open, and the user is hovering the sign up button and clicks, then it checks if the info is correctly formatted
+                        elif checkInfo('signup'): # if the page is already open, and the user is hovering the sign up button and clicks, then it checks if the info is correctly formatted (for signing up)
                             if upd.update().addUser(username, password, creditCard, email): # if the info is formatted right, it then tries to add the user info using the update() class in the updateScript in this directory and the add user function
                                 # if it succeeds
                                 signInPage = False # sets the boolean denoting that the user is on hte sign in page to False
@@ -387,221 +400,236 @@ while running:
                             password = passwordDefault # resetns the password string
                             creditCard = creditcardDefault # resets the credit card info string
                             email = emailDefault # resets teh email string
-                        elif checkInfo('signin'):
-                            if upd.update().checkUser(username, password):
-                                print("Correct Info")
-                                signInPage = False
-                                signUpPage = False
-                                for seats in range(len(pickedSeats)):
-                                    row = pickedSeats[seats][1]
-                                    coloumn = pickedSeats[seats][0]
-                                    upd.update().bookSeat(pickedTime, row, coloumn, pickedMovie)
-                                    upd.update().addPoints(username, password)
-                                ticketOut = True
-                            else:
-                                print("Try again")
-                        print(checkInfo('signin'))
+                        elif checkInfo('signin'): # checks if the info is formatted corrently (for signing in)
+                            if upd.update().checkUser(username, password): # uses the update class and checkUser method to check if the username and password exist and match each other
+                                # if they do match
+                                signInPage = False # this sets the boolean representing the user is on the sign up / sign in part of the process to False
+                                signUpPage = False # sets the boolean denoting the user is on the sign up page to False
+                                for seats in range(len(pickedSeats)): # goes through all the seats in the picked seats
+                                    row = pickedSeats[seats][1] # sets the var row to the row of the current picked seat
+                                    coloumn = pickedSeats[seats][0] # sets the var coloumn to the coloumn of the current picked seat
+                                    upd.update().bookSeat(pickedTime, row, coloumn, pickedMovie) # it then books the seat for the user using the bookSeat() function in the update class in the update script in the directory 
+                                    upd.update().addPoints(username, password) # it then also uses another function in the update script (addPoints()) to award the user points for every chair selected
+                                ticketOut = True # sets the boolean denoting the user is currently on the ticket viewing page to true
+                            else: # if the username and password do not exist in the data base or do not match
+                                print("Wrong info") # does not change the page (waits for user to enter correct info) and prints in the console wrong info (not for user to see)
 
                     
-                    if mousePos[0] > int(width/2 - 200) and mousePos[0] < int(width/2 +200):
-                        if mousePos[1] > int(height/2 - 110) and mousePos[1] < int(height/2 - 65):
-                            userTyping = True
-                            username = ''
+                    if mousePos[0] > int(width/2 - 200) and mousePos[0] < int(width/2 +200): # if the user is on the sign up or sign in page, and they are within the boundries of all the info typing fields
+                        if mousePos[1] > int(height/2 - 110) and mousePos[1] < int(height/2 - 65): # if the mouse is over the first field (username)
+                            userTyping = True # boolean for username typing is set to True
+                            username = '' # username string is set to and empty string
                         else:
-                            userTyping = False
+                            userTyping = False # else the userTyping is set to false
                         
-                        if mousePos[1] > int(height/2 - 30) and mousePos[1] < int(height/2 + 15):
-                            passTyping = True
-                            password = ''
+                        if mousePos[1] > int(height/2 - 30) and mousePos[1] < int(height/2 + 15): # checks if it is over the second field (password)
+                            passTyping = True # if so password typing boolean is set to True
+                            password = '' # password string is set to an empty string
                         else:
-                            passTyping = False
+                            passTyping = False # else the password typing boolean is set to False
                         
-                        if signUpPage:
-                            if mousePos[1] > int(height/2 + 50) and mousePos[1] < int(height/2 + 95):
-                                cardTyping = True
-                                creditCard = ''
+                        if signUpPage: # if the user is on the sign up page (has more fields)
+                            if mousePos[1] > int(height/2 + 50) and mousePos[1] < int(height/2 + 95): # if the user is hovering the 3rd field (credit card info)
+                                cardTyping = True # credit card info boolean typing is set to True
+                                creditCard = '' # credit card string is set to an empty string
                             else:
-                                cardTyping = False
+                                cardTyping = False # else the credit card info typing boolean is set to False
                             
-                            if mousePos[1] > int(height/2 + 130) and mousePos[1] < int(height/2 +175):
-                                emailTyping = True
-                                email = ''
+                            if mousePos[1] > int(height/2 + 130) and mousePos[1] < int(height/2 +175): # if the mouse is hovering hte last field (4th; email)
+                                emailTyping = True # boolean for typing email is set to True
+                                email = '' # email string is set to an empty string
                             else:
-                                emailTyping = False
-                                
+                                emailTyping = False # else the boolean for typing email is set to False
+                    else: # if the user is not over the the feilds horizontally using their mouse, they are all set to false 
+                        userTyping = False
+                        passTyping = False
+                        cardTyping = False
+                        emailTyping = False
 
-                if not maximized:
-                    if draggingWin == False:
-                        mousePos = pygame.mouse.get_pos()
-                        if mousePos[0] > 0 and mousePos[0] < width-120 and mousePos[1] > 0 and mousePos[1] < 25:
-                            draggingWin = True
-                            oldPos = pygame.mouse.get_pos()
+                if not maximized: # if the window was not maximized
+                    if draggingWin == False: # and the window is not currently being moved / dragged
+                        mousePos = pygame.mouse.get_pos() # retrieves mousePos (most recent one [executing the commands before this mean that mouse might be in a different position by now])
+                        if mousePos[0] > 0 and mousePos[0] < width-120 and mousePos[1] > 0 and mousePos[1] < 25: # if the mouse is over the border
+                            draggingWin = True # sets the boolean denoting that the window is being dragged to True 
+                            oldPos = pygame.mouse.get_pos() # sets the starting point for dragging to the mouse's current position
         
         elif event.type == MOUSEBUTTONUP: # checks if the event was a mouse button being released
-            if event.button == 1:
-                if not maximized:
-                    if draggingWin:
-                        draggingWin = False
-                        mousePos = pygame.mouse.get_pos()
-                        winPos = (winPos[0] - oldPos[0] + mousePos[0], winPos[1] - oldPos[1] + mousePos[1])
-                        window.position = winPos
+            if event.button == 1: # the left mouse button is released
+                if not maximized: # if the window is not maximized
+                    if draggingWin: # and the window is being dragged
+                        draggingWin = False # then set boolean denoting the window is being dragged to false
+                        mousePos = pygame.mouse.get_pos() # get the most recent mouse position
+                        winPos = (winPos[0] - oldPos[0] + mousePos[0], winPos[1] - oldPos[1] + mousePos[1]) # update the new position of the window based on old position of the mouse and its current position
+                        window.position = winPos # set the new window position to the calculated one
 
         if event.type == MOUSEMOTION: # checks if the event was mouse motion
-            if not maximized:
-                if draggingWin:
-                    mousePos = pygame.mouse.get_pos()
-                    winPos = (winPos[0] - oldPos[0] + mousePos[0], winPos[1] - oldPos[1] + mousePos[1])
-                    window.position = winPos
+            if not maximized: # if the window is not maximized
+                if draggingWin: # and the window is being dragged
+                    mousePos = pygame.mouse.get_pos() # then get the mouse recent mouse position
+                    winPos = (winPos[0] - oldPos[0] + mousePos[0], winPos[1] - oldPos[1] + mousePos[1]) # calculate the new window position
+                    window.position = winPos # set the new window position to the calculated one
                     
-
-    root.fill((57, 237, 222))
+    
+    # background of everything
+    root.fill((57, 237, 222)) # fills in the background of the whole window th the colour (57, 237, 222) [light green in the back]
 
     #border
-
     #border - background
-    draw.rect(root, (40, 184, 153), (0,0, width, 25))
+    draw.rect(root, (40, 184, 153), (0,0, width, 25)) # draws a rectangle using the draw.rect method in the pygame library that has a colour of (40,184, 153) and starts at 0,0 and its width is the width of the screen, and its height is 25 pixels
 
     #border - elements
     #elements - x
-    if hoverStates[0]: 
-        colourX = (255,255,255)
-        colourXback = (242, 27, 27)
-    else:
-        colourX = (125, 245, 219)
-        colourXback = (40, 184, 153)    
+
+    # checks the hvoer states for each button to to set their colours
+    if hoverStates[0]: # if x is being hovered
+        colourX = (255,255,255) # sets the icon colour to white (255)
+        colourXback = (242, 27, 27) # and the background to (242, 27, 27)
+    else: # if the x is not being hovered
+        colourX = (125, 245, 219) # sets the icon colour to (125, 245, 219)
+        colourXback = (40, 184, 153) # and sets the background colour to the colour of the border (40, 184, 153)
 
     #elements - square
-    if hoverStates[1]:
-        colourSquareBack = (65, 209, 178)
-        colourSquare = (255,255,255)
+    if hoverStates[1]: # if the square is being hovered
+        colourSquareBack = (65, 209, 178) # sets the background colour of the square
+        colourSquare = (255,255,255) # icon colour
     else:
-        colourSquare = (125, 245, 219)
-        colourSquareBack = (40, 184, 153) 
+        colourSquare = (125, 245, 219) # icon colour if not hovered
+        colourSquareBack = (40, 184, 153)  # background colour if not hovered (border colour)
     
-    #elements - minus
-    if hoverStates[2]:
-        colourMinusBack = (65, 209, 178)
-        colourMinus = (255,255,255)
+    #elements - minus 
+    if hoverStates[2]: # if minus is being hovered
+        colourMinusBack = (65, 209, 178) # background colour if minus is hovered
+        colourMinus = (255,255,255) # icon colour if hovered
     else:
-        colourMinus = (125, 245, 219)
-        colourMinusBack = (40, 184, 153)
+        colourMinus = (125, 245, 219) # icon colour if not hovered
+        colourMinusBack = (40, 184, 153) # background colour if not hovered (border colour)
     
     #colours array
-    borderColours = [[colourX, colourXback], [colourSquare, colourSquareBack], [colourMinus, colourMinusBack]]
+    borderColours = [[colourX, colourXback], [colourSquare, colourSquareBack], [colourMinus, colourMinusBack]] # adds the colours to a 2D array that can be used later on with each element being an array, ordered such that first is x, second is squrae third is minus, with each holding the background and icon colours
 
-    for i in range(1,4):
-        draw.rect(root, borderColours[i-1][1], (width-(i*40),0, 40, 25))
-        currBorderImage = colourImage(borderImages[i-1], borderColours[i-1][0][0],borderColours[i-1][0][1], borderColours[i-1][0][2], borderColours[i-1][1])
-        root.blit(currBorderImage, (width-(i*40),0))
+    for i in range(1,4): # loops through numbers 1 to 3 to go through the icons and draw their background rect along with the icons them selves
+        draw.rect(root, borderColours[i-1][1], (width-(i*40),0, 40, 25)) # draws the background rectangle for the icon
+        currBorderImage = colourImage(borderImages[i-1], borderColours[i-1][0][0],borderColours[i-1][0][1], borderColours[i-1][0][2], borderColours[i-1][1]) # recolours the image being drawn using the colour image function at the top, returns new image to the variable
+        root.blit(currBorderImage, (width-(i*40),0)) # blit (method used to combine surfaces or images in pygame [it is also used in computers where "bitmaps" are combined, which are basically images made of dots or pixels each pixel having its own value and in pygame's case they are refered to by the pygame library documentation as surfaces])
+        # essentially the image is added onto the window (reffered to as root) at the specified position
 
     #Main Display
-    # This commented code adds the wave shape in the background (Too laggy as it isnt an image / shape)
+    # This commented code adds the wave shape in the background (Too laggy as it isnt an image / shape so its commented out)
     # for x in range(width):
     #     for y in range(int(height/10)+50):
     #         if y > (50*math.sin((1/200)*x)+50):
     #             draw.rect(root, (255,255,255), (x+1, y+400, 1, 1))
-    
+    # isntead I use a simple rectangle as bellow
     # Background
     # Background - Rectangle Shape
     draw.rect(root, (255,255,255), (0, 5 * height/ 8, width, height))
 
     # Main Page
-    if mainPage == True:
+    if mainPage == True: # if the user is on the main page
         # Main - Background - Images
-        tempBackImage = pygame.transform.scale(backImage, (round(1920 * (width/1920)), round(1080 * (height/1080))))
-        root.blit(tempBackImage, (0,0))
+        # displays the background images
+        tempBackImage = pygame.transform.scale(backImage, (round(1920 * (width/1920)), round(1080 * (height/1080)))) # scales the images to match window size and assigns them to a temporary var
+        root.blit(tempBackImage, (0,0)) # images added to the window
 
         # Title
-        root.blit(titleImage, (width/2 - 250,0))
+        root.blit(titleImage, (width/2 - 250,0)) # the title of the movie theatre is added onto the window
 
         # Button
-        if enterButtonHover == True:
+        if enterButtonHover == True: # checks if the enter button is hovered to switch between the possible colours for it using i to indicate which colour
             i = 1
         else:
             i = 0
         buttonBackColors = enterButtonColors[i]
-        draw.rect(root, buttonBackColors[0], (width/2-245, height/2+5, 500, 100), border_radius= 4)
-        draw.rect(root, buttonBackColors[1], (width/2-250, height/2, 500, 100), border_radius= 4)    
+        draw.rect(root, buttonBackColors[0], (width/2-245, height/2+5, 500, 100), border_radius= 4) # draws the shadow rectangle using the colours currently picked
+        draw.rect(root, buttonBackColors[1], (width/2-250, height/2, 500, 100), border_radius= 4) # draws the rectangle using the colours currently picked
 
         # Button - Text
-        enterButtonText = font.render('ENTER', True, (255,255,255), buttonBackColors[1])
-        enterButtonRect = enterButtonText.get_rect()
-        enterButtonRect.center = (int(width/2), int(height/2)+50)
-        root.blit(enterButtonText, enterButtonRect)
+        enterButtonText = font.render('ENTER', True, (255,255,255), buttonBackColors[1]) # creates a surface with the text "ENTER" using the stored font (font family + size) that was iniatilized as font at the start
+        enterButtonRect = enterButtonText.get_rect() # this gets the rectangle that surrounds the text (will be used to place text using the wanted center point)
+        enterButtonRect.center = (int(width/2), int(height/2)+50) # this sets the wanted center point for the text (it is set to the rectangle that is gotten from the text)
+        root.blit(enterButtonText, enterButtonRect) # places the text at the position of the rectangle that we set using the center point
 
     # Movie Page
-    elif moviePage == True:
+    elif moviePage == True: # if the movie page is on instead
         # Logo
-        tempTitle = pygame.transform.scale(titleImage, (200, 200))
-        root.blit(tempTitle, (0,-30))
+        tempTitle = pygame.transform.scale(titleImage, (200, 200)) # scales down the title image / logo to 200 x 200 pixels
+        root.blit(tempTitle, (0,-30)) # places it in the top left corner
         
         # Title
+        # similar to the enter text this displays the title of the page for movies which is Movies
         titleText = font.render('MOVIES', True, (20,64,255), (57, 237, 222))
         titleTextRect = titleText.get_rect()
         titleTextRect.center = (int(width/2), 200)
         root.blit(titleText, titleTextRect)
-
-        # Navigator
         
         # Sliding animation
-        if movieSlidingAnim1:
-            if slidingFactor1 > -(width):
-                slidingFactor1 -= 50
+        if movieSlidingAnim1: # if the first sliding animation is on
+            if slidingFactor1 > -(width): # as long as the sliding factor is still greater than the negative of the width
+                slidingFactor1 -= 50 # it is reduced by 50 (moves the movies by 50 px to the left every loop)
             else:
-                slidingFactor1 = 0
-                firstThree = False
-                secondThree = True
-                movieSlidingAnim1 = False
+                slidingFactor1 = 0 # when the animation is over the sliding factor is set to 0 (reset)
+                firstThree = False # the first three movies are set to False
+                secondThree = True # second three movies are displayed
+                movieSlidingAnim1 = False # animation is set to false
         
-        if movieSlidingAnim2:
-            if slidingFactor1 < (width):
-                slidingFactor1 += 50
+        if movieSlidingAnim2: # if its the second animation that is on
+            if slidingFactor1 < (width): # as long as the sliding factor is less than the width size
+                slidingFactor1 += 50 # the sliding factor is increased by 50 (movies movie to the right by 50 px)
             else:
-                slidingFactor1 = 0
-                secondThree = False
-                firstThree = True
-                movieSlidingAnim2 = False
+                slidingFactor1 = 0 # resets the sliding factor to 0
+                secondThree = False # sets the second three movies to false
+                firstThree = True # sets the first three movies to True
+                movieSlidingAnim2 = False # sets the animation to False
 
         # Movies
-        if firstThree == True:
+        if firstThree == True: # if its the first three movies
             for i in range(3):
+                # it displays the movie (each having the slidingfactor variable added such that they move once animation starts)
                 currMovImg = pygame.transform.scale(movieImages[i], (270,405))
                 root.blit(currMovImg, (int((i+1)*width/4 - 135 + slidingFactor1),int(1*height/4)+100))
 
-            if movieSlidingAnim1 != True:
-                for i in range(len(movieHover)):
+            if movieSlidingAnim1 != True: # if the animation is not happening for the first slide
+                for i in range(len(movieHover)): # goes through the movies
+                    # if they are hovered
                     if movieHover[i]:
+                        # it creates a surface with a transperrancy of 240 that is not completely white (245 not 255)
                         hoverRect = pygame.Surface((270,405))
                         hoverRect.set_alpha(240)
                         hoverRect.fill((245,245,245))
                         root.blit(hoverRect, (int((i+1) * width/4 - 135 + slidingFactor1),int(1*height/4)+100))
 
+                        # stores information about the movie hovered into an array
                         currInfo = movieInfo[i]
                         lines = [f"Screen #: {i+1}", f"Name: {currInfo['name']}", f"Genre: {currInfo['genre']}", f"Seats #: {currInfo['seats']}", f"Time: {currInfo['time']}hrs"]
                             
+                        # uses a for loop to go through the array and display each line on top of the rectangle created
                         for j in range(len(lines)):
                             movieText = font2.render(lines[j], True, (20,64,255))
                             movieTextRect = titleText.get_rect()
                             movieTextRect.center = (int((i+1) * width/4), int(1*height/4)+ 135 + 40*(j+1))
                             root.blit(movieText, movieTextRect)
-
+        
+        # if its second three movies
         elif secondThree == True:
-            for i in range(2):
+            for i in range(2): # display the 2 movies on this page
                 currMovImg = pygame.transform.scale(movieImages[i+3], (270,405))
                 root.blit(currMovImg, (int((i+1) * width/4 - 135 + slidingFactor1),int(1*height/4)+100))
 
-            if movieSlidingAnim2 != True:
-                for i in range(len(movieHover)):
+            if movieSlidingAnim2 != True: # if the movie animation is not happening
+                for i in range(len(movieHover)): # it goes through the hovered movie array and checks if they are hovered
                     if i != 2:
                         if movieHover[i]:
+                            # creates a rectangle surface that is semi transparent on top of hovered movie to display info
                             hoverRect = pygame.Surface((270,405))
                             hoverRect.set_alpha(240)
                             hoverRect.fill((245,245,245))
                             root.blit(hoverRect, (int((i+1) * width/4 - 135 + slidingFactor1),int(1*height/4)+100))
                             
+                            #stores info for the movie in a list
                             currInfo = movieInfo[i+3]
                             lines = [f"Screen #: {i+4}", f"Name: {currInfo['name']}", f"Genre: {currInfo['genre']}", f"Seats #: {currInfo['seats']}", f"Time: {currInfo['time']}hrs"]
                                 
+                            # goes through the list and displays each line
                             for j in range(len(lines)):
                                 movieText = font2.render(lines[j], True, (20,64,255))
                                 movieTextRect = titleText.get_rect()
@@ -610,37 +638,46 @@ while running:
 
                     
         # Slider
+        # checks if the slider is beign hovered and sets the colours based on that
         if sliderHover:
             sliderColor = sliderColours[0]
         else:
             sliderColor = sliderColours[1]
 
+        # draws the slider in the right position based on if its the first or second movie page
         if firstThree == True:
             draw.polygon(root, sliderColor, [(width - 100, int(1*height/4)+303), (width-130, int(1*height/4)+333), (width-130, int(1*height/4)+273)])
         else:
             draw.polygon(root, sliderColor, [(100, int(1*height/4)+303), (130, int(1*height/4)+333), (130, int(1*height/4)+273)])
     
         # selection background
+        # if the user selected a movie, and now selecting specifics
         if selection:
+            # draws a semi transparent layer on top of the whole page
             select = pygame.Surface((width,height))
             select.set_alpha(200)
             select.fill((235,235,235))
             root.blit(select, (0, 25))
+            # adds a window that is used so the user is able to select the info
             draw.rect(root, (255,255,255), (int(width/2 - 250), int(height/2 - 250), 500, 500), border_radius= 10)
         
             # time selection
-            if timeSelection:
+            if timeSelection: # if the user is selecting the time 
+                # displays the title
                 timeTitleText = font.render('Times', True, (20,64,255))
                 timeTitleTextRect = timeTitleText.get_rect()
                 timeTitleTextRect.center = (int(width/2), int(height/2 - 180))
                 root.blit(timeTitleText, timeTitleTextRect)
 
+                # goes through all the times
                 for i in range(len(timeInfo)):
+                    # if the time is hovered, it changes the background border colour
                     if timeHover[i] == True:
                         timeBorderColor = (210, 210, 210)
                     else:
                         timeBorderColor = (235, 235, 235)
 
+                    # displays the times one after the other (under each other)
                     draw.rect(root, timeBorderColor, (int(width/2 - 60), int(height/2 - 115 + i*70), 120, 50), border_radius= 25)
                     timeText = font2.render(timeInfo[i], True, (0,0,0))
                     timeRect = timeText.get_rect()
@@ -648,142 +685,174 @@ while running:
                     root.blit(timeText, timeRect)
 
             # Seat selection
-            if seatSelection:
-                if totalSeatCalculated != True:
+            if seatSelection: # if the user is currently selecting their seats
+                if totalSeatCalculated != True: # if the seat info is not already retrieved
+                    # it uses the update script in the directory to retieve the info
                     seatInfo = upd.update().seatInfo(pickedTime, pickedMovie)
                     allSeatInfo = seatInfo['all']['seats']
                     availableAllInfo = seatInfo['all']['available']
                     disableSeatInfo = seatInfo['disablity']['seats']
                     availableDisableInfo = seatInfo['disablity']['available']
-                    totalSeatCalculated = True
+                    totalSeatCalculated = True # sets the boolean denoting that the seat info has already been retrieved
 
-                priceText = font2.render(f"Price: {seatsSelected * 10} CAD", True, (0,0,0))
+                priceText = font2.render(f"Price: {seatsSelected * 10} CAD", True, (0,0,0)) # adds text bottom left that displays the total price so far
                 root.blit(priceText, (int(width/2 - 240), int(height/2 + 220)))
 
-                if seatContinue:
+                # checks if the user is hovering the continue button to select its colours
+                if seatContinue: 
                     colourCont = (3, 86, 252)
                     colourText = (255,255,255)
                 else:
                     colourCont = (255,255,255)
                     colourText = (3, 86, 252)
+                # draws the border for the continue border
                 draw.rect(root, colourCont, (int(width/2 + 90), int(height/2 + 190), 150, 50), border_radius= 30)
 
+                # dispalys the text for continue button
                 priceText = font2.render(f"Continue >", True, colourText)
                 root.blit(priceText, (int(width/2 + 120), int(height/2 + 200)))
 
+                # variables that denote the starting points for the seats in x and y
                 seatStartingX = int(width/2 - 220)
                 seatStartingY = int(height/2 - 230)
+
+                # nested for loop to tranverse the retireved info on each chair to check if hte chair is empty or not
                 for coloumns in range(8):
                     # non-disablity seats
                     for seat in range(allSeatInfo[coloumns]):
                         if availableAllInfo[seat][coloumns] == "True":
+                            # if the seat is clear in the database
                             if (mousePos[0] > seatStartingX + (coloumns * 60) and mousePos[0] < seatStartingX + (coloumns * 60) + 25 and mousePos[1] > seatStartingY + (seat * 40) and mousePos[1] < seatStartingY + (seat * 40) + 25):
+                                 # if its hovered, the the relative position to that seat in the 2D hoveredSeat array is set to 1, and the colour is changed
                                  seatColour = (50,50,50)
                                  hoveredSeat[coloumns][seat] = 1
-                                 print(seat,coloumns)
                             else:
+                                # if the seat is not hovered then it has the normal colour, and the relative position in the 2D hovered seat array is set to 0 (denotes not)
                                 seatColour = (20,64,255)
                                 hoveredSeat[coloumns][seat] = 0
                             if ([coloumns,seat] in pickedSeats):
-                                seatColour = (50,50,50)
+                                # if the seat is already in the picked seats, it remains selected and is denoted using a differnt colour
+                                seatColour = (70,70,70)
                         else:
-                            seatColour = (255,0,0)
+                            seatColour = (255,0,0) # if the seat is not available, it scolour is set to false
                         
+                        # finally it draws the seat using the colour and location
                         draw.rect(root, seatColour, (seatStartingX + (coloumns * 60), seatStartingY + (seat * 40), 25,25), border_radius= 2)
+
+
                     # disability seats
+                    # after going through the normal seatings, it goes through the disability seats
                     for seat in range(allSeatInfo[coloumns], allSeatInfo[coloumns]+disableSeatInfo[coloumns]):
-                        
-                        if availableDisableInfo[seat-allSeatInfo[coloumns]][coloumns] == "True":
+                        if availableDisableInfo[seat-allSeatInfo[coloumns]][coloumns] == "True": # if the seat is not taken
                             if (mousePos[0] > seatStartingX + (coloumns * 60) and mousePos[0] < seatStartingX + (coloumns * 60) + 25 and mousePos[1] > seatStartingY + (seat * 40) and mousePos[1] < seatStartingY + (seat * 40) + 25):
+                                 # colour is changed if the seat is hovered, and that seat is represented as hovered in the hoveredSeat 2D array
                                  seatColour = (50,50,50)
                                  hoveredSeat[coloumns][seat] = 1
-                                 print(seat,coloumns)
                             else:
+                                # if the seat is not hovered, then its set to the colour that denotes seats for people with a disability
                                 seatColour = (255,64,255)
+                                # seat is represented as not hovered in the hovered Seat 2D array
                                 hoveredSeat[coloumns][seat] = 0
+                            
+                            # if the seat is already in the picked seats
                             if ([coloumns,seat] in pickedSeats):
-                                seatColour = (50,50,50)
+                                # it's denoted using a specific colour
+                                seatColour = (70,70,70)
                         else:
+                            # if the seat is taken, then its colour is red
                             seatColour = (255,0,0)
 
+                        # the seat is drawn uisng the colour and location
                         draw.rect(root, seatColour, (seatStartingX + (coloumns * 60), seatStartingY + (seat * 40), 25,25), border_radius= 2)
 
 
             # Sign In
             if signInPage:
+                # colours for sign in button are configured based on if the button is hovered or not
                 if signInContinue:
                     colourSignIn = (3, 86, 252)
                     colourSignInText = (255,255,255)
                 else:
                     colourSignIn = (255,255,255)
                     colourSignInText = (3, 86, 252)
+
+                # the button is drawn
                 draw.rect(root, colourSignIn, (int(width/2 + 90), int(height/2 + 190), 150, 50), border_radius= 30)
 
+                # the text for the button is placed
                 priceText = font2.render(f"Sign In >", True, colourSignInText)
                 root.blit(priceText, (int(width/2 + 130), int(height/2 + 200)))
 
+                # the colours for the sign up button ar econfigured based on if the button is hovered or not
                 if signUpHover:
                     colourSignUp = (3, 86, 252)
                     colourSignUpText = (255,255,255)
                 else:
                     colourSignUp = (255,255,255)
                     colourSignUpText = (3, 86, 252)
-                draw.rect(root, colourSignUp, (int(width/2 - 240), int(height/2 + 190), 150, 50), border_radius= 30)
 
+                # draws the sign up button
+                draw.rect(root, colourSignUp, (int(width/2 - 240), int(height/2 + 190), 150, 50), border_radius= 30)
+                # displays sign up text
                 priceText = font2.render(f"< Sign Up", True, colourSignUpText)
                 root.blit(priceText, (int(width/2 - 210), int(height/2 + 200)))
 
+                # if the user is on the sign up page
                 if signUpPage:
+                    # the text title becomes sign up instead
                     pageTitleText = font.render('Sign Up', True, (20,64,255))
 
-                    # Credit Card
+                    # Credit Card box is displayed
                     draw.rect(root, (230, 230, 230), (int(width/2 - 200), int(height/2 + 50), 400, 45))
                     creditText = font2.render(creditCard, True, (20,64,255))
                     root.blit(creditText, (int(width/2 - 190), int(height/2 + 60)))
 
-                    # Email
+                    # Email box is displayed
                     draw.rect(root, (230, 230, 230), (int(width/2 - 200), int(height/2 + 130), 400, 45))
                     emailText = font2.render(email, True, (20,64,255))
                     root.blit(emailText, (int(width/2 - 190), int(height/2 + 140)))
                 else:
+                    # if its not the sign up page, then the teitle becomes sign in
                     pageTitleText = font.render('Sign In', True, (20,64,255))
 
-                # Username
+                # Username box is displayed on sign in or sign up
                 draw.rect(root, (230, 230, 230), (int(width/2 - 200), int(height/2 - 110), 400, 45))
                 userText = font2.render(username, True, (20,64,255))
                 root.blit(userText, (int(width/2 - 190), int(height/2 - 100)))
 
-                # Password
+                # Password box is displayed on sign in or sign up
                 draw.rect(root, (230, 230, 230), (int(width/2 - 200), int(height/2 - 30), 400, 45))
                 passText = font2.render(password, True, (20,64,255))
                 root.blit(passText, (int(width/2 - 190), int(height/2 - 20)))
                 
+                # displays the title
                 pageTitleRect = pageTitleText.get_rect()
                 pageTitleRect.center = (int(width/2), int(height/2 - 180))
                 root.blit(pageTitleText, pageTitleRect)
 
-            # Ticket Output
+            # Ticket Output page
             if ticketOut:
+                # sets the title text to "Reciept"
                 pageTitleText = font.render('Reciept', True, (20,64,255))
-                nameText = font2.render(f"Name: {username}", True, (20,64,255))
-                costText = font2.render(f"Price: {seatsSelected * 10} CAD", True, (20,64,255))
-                timeText = font2.render(f"Time: {pickedTime}", True, (20,64,255))
-                screenText = font2.render(f"Screen: {pickedMovie+1}; {movieInfo[pickedMovie]['name']}", True, (20,64,255))
-                seatTitleText = font2.render("Seats Picked:", True, (20,64,255))
+                nameText = font2.render(f"Name: {username}", True, (20,64,255)) # uses username for the name text
+                costText = font2.render(f"Price: {seatsSelected * 10} CAD", True, (20,64,255)) # sets the price text
+                timeText = font2.render(f"Time: {pickedTime}", True, (20,64,255)) # sets the picked time text
+                screenText = font2.render(f"Screen: {pickedMovie+1}; {movieInfo[pickedMovie]['name']}", True, (20,64,255)) # sets the screen and movie picked text
+                seatTitleText = font2.render("Seats Picked:", True, (20,64,255)) # seats picked titel
 
-                textArr = [nameText, costText, timeText, screenText, seatTitleText]
+                textArr = [nameText, costText, timeText, screenText, seatTitleText] # array of text to display
 
-                for text in range(len(textArr)):
+                for text in range(len(textArr)):# goes through the text array and displays it 
                     root.blit(textArr[text], (int(width/2 - 110), int(height/2 - 120 + 30 * text)))
 
-                for seats in range(len(pickedSeats)):
+                for seats in range(len(pickedSeats)): # at the end it adds the seats, using letters to represent the coloumns
                     row = pickedSeats[seats][1] + 1
                     alph = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
                     coloumn = pickedSeats[seats][0]
                     seatText = font2.render(f"Seat {seats+1}: {alph[coloumn]}{row}", True, (0,0,0))
                     root.blit(seatText, (int(width/2 - 80), int(height/2 + 30 + 20 * seats)))
-                print(pickedSeats)
 
+                # displays title for ticket page
                 pageTitleRect = pageTitleText.get_rect()
                 pageTitleRect.center = (int(width/2), int(height/2 - 180))
                 root.blit(pageTitleText, pageTitleRect)
