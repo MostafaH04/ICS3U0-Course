@@ -143,237 +143,250 @@ password = passwordDefault # Variable used to store users password on sign up an
 creditCard = creditcardDefault # Variable used to store users creditCard on sign up (set to the default credit cardvariable at the start)
 email = emailDefault # Variable used to store users username on sign up(set to the default email variable at the start)
 
-userTyping = False
-passTyping = False
-cardTyping = False
-emailTyping = False
+userTyping = False # Boolean set to denote if the user is currently typing in the username feild (during sign in and sign up)
+passTyping = False # Boolean set to denote if the user is currently typing in the password feild (during sign in and sign up)
+cardTyping = False # Boolean set to denote if the user is currently typing in the credit card feild (during sign in)
+emailTyping = False # Boolean set to denote if the user is currentyl typing in the email feild (during sign up)
 
-def checkInfo(mode):
-    global username
-    global usernameDefault
-    global password
-    global passwordDefault
-    infoList = [username, password]
-    if mode == "signup":
-        global creditCard
-        global creditcardDefault
-        global email
-        global emailDefault
+def checkInfo(mode): # Function used to check if the user info currently placed in the fields for sign up and sign in are not equal to the default ones (makes sure the user actually changed the info before trying to compare it with the database or add new info to the database) 
+    # The mode argument for the function retrieves if the mode the user is using the function in (are they signing up or signing in) which helps to know which variables to compare
+    global username # retrieves the global username variable since functions usually have local vairabls, and in order to access varaibles outside the function they are required to be global
+    global usernameDefault # retrieves the global username default variable
+    global password # retrieves the global passwrod variable
+    global passwordDefault # retrieves the global password default variable
+    if mode == "signup": # if the mode is actually signing up
+        global creditCard # the function also then retrieves the global credit card variable
+        global creditcardDefault # retrieves the global credit card default variable
+        global email # retrieves the global email variable
+        global emailDefault # retrieves the global email default variable
         
-        if username == usernameDefault or password == passwordDefault or creditCard == creditcardDefault or email == emailDefault:
-            return False
+        if username == usernameDefault or password == passwordDefault or creditCard == creditcardDefault or email == emailDefault: # checks if any of the user's sign up info has still not been changed
+            return False # if any feild has not been changed it returns back to the place the function was called False [indicating that some field have not been changed]
         else:
-            return True
+            return True # if all the fields have changed, then it returns back to the place the function was called True [indicating that all the feilds were changed as wanted]
     
-    elif mode == "signin":
-        if username == usernameDefault or password == passwordDefault:
-            return False
+    elif mode == "signin": # if the function is actually called using the sign in mode it does not require the global variables for credit card info, or email
+        if username == usernameDefault or password == passwordDefault: # checks if the users username and password fields where actually edited
+            return False # if any of them were not, then it returns False [indicating that some field has not been changed]
         else:
-            return True  
+            return True  # if all of them were edited, then it returns True [indicating taht all the fields were changed]
 
-ticketOut = False        
+ticketOut = False  # Boolean to denote if the user is on the ticket out phase in selection (the transaction is complete and views the reciept / ticket)      
 
-running = True
+running = True # Boolean to denote that the program should keep running
 
 while running:
-    mousePos = pygame.mouse.get_pos()
+    mousePos = pygame.mouse.get_pos() # retrieves the mouse position on the window that is stored in the pygame library (retrieved as a tuple such as: (x, y) and can be access like this for example: x = mousePos[0] [similar to arrays])
 
-    #border
+    #border 
     #border - right side
-    for i in range(1,4):
-        if mousePos[0] < width-(40*(i-1)) and mousePos[0] > width-(40*i) and mousePos[1] > 0 and mousePos[1] < 25:
-            hoverStates[i-1] = True
+    for i in range(1,4): # loops through numbers 1 to 3 used to check if any of the border buttons are hovered
+        if mousePos[0] < width-(40*(i-1)) and mousePos[0] > width-(40*i) and mousePos[1] > 0 and mousePos[1] < 25: # this checks if the mouse position is over one of the buttons (i represents which botton it is)
+            hoverStates[i-1] = True # If the button number I is hovered then its state in the hoverStates boolean list is turned to True (i-1 is used, becuase lists and arrays in python count starting 0 not 1)
 
         else:
-            hoverStates[i-1] = False    
+            hoverStates[i-1] = False # If the button number I is not hovered then its state in the hoverStates boolean list is turned to False if it isnt already (i-1 is used, becuase lists and arrays in python count starting 0 not 1)    
 
-    if mainPage == True and mousePos[0] > width/2-250 and mousePos[0] < width/2+250 and mousePos[1] > height/2 and mousePos[1] < height/2 +100:
-        enterButtonHover = True
+    #Main page
+    #Enter button
+    if mainPage == True and mousePos[0] > width/2-250 and mousePos[0] < width/2+250 and mousePos[1] > height/2 and mousePos[1] < height/2 +100: # checks if the mouse is over the enter button
+        enterButtonHover = True # if it is then the enterButtonHover variable is set to True to denote that
     else:
-        enterButtonHover = False
+        enterButtonHover = False # if the button is not hovered, it is set to False
     
+    #Movie selection Page
     if moviePage == True:
+        # If the user is currently NOT selecting specifics (time, seat, account, etc.)
         if selection == False:
-            if firstThree == True:
+            if firstThree == True: # If it is the first three movies currently displayed
+                # Checks that hte sliding animation is not occuring, then checks if the user is over the page switch button (or the sliding button)
                 if movieSlidingAnim1 != True and mousePos[0] > (width - 130) and mousePos[0] < (width - 100) and mousePos[1] < int(1*height/4)+333 and mousePos[1] > int(1*height/4)+273:
-                    sliderHover = True
+                    sliderHover = True # if the user is over that button, and the movies are currently not sliding, the hover status is set to true
                 else:
-                    sliderHover = False
+                    sliderHover = False # if the user is NOT over the button, or the movies are currently sliding, then the hover status is set to False
             
-            if secondThree == True:
+            if secondThree == True: # If it is actually the second page or second three movies that are displayed, it does the same as above just for these specific movies
                 if movieSlidingAnim2 != True and mousePos[0] > 100 and mousePos[0] < 130 and mousePos[1] < int(1*height/4)+333 and mousePos[1] > int(1*height/4)+273:
                     sliderHover = True
                 else:
                     sliderHover = False
             
-            for i in range(1,4):
-                if mousePos[0] > int(i * width/4 - 135) and mousePos[0] < int(i * width/4 + 135) and mousePos[1] > int(1*height/4 +100) and mousePos[1] < int(1*height/4 +505):
-                    if (i-1) < 2:
-                        movieHover[i-1] = True
-                    else:
-                        if firstThree:
-                            movieHover[i-1] = True
-                else:
-                    movieHover[i-1] = False
+            for i in range(1,4): # Loops through numbers 1 to 3 to check if the mouse is hovering on one of the three movies on the screen
+                if mousePos[0] > int(i * width/4 - 135) and mousePos[0] < int(i * width/4 + 135) and mousePos[1] > int(1*height/4 +100) and mousePos[1] < int(1*height/4 +505): # If the mouse is over the current movie (i)
+                    if (i-1) < 2: # if the current movie is currently hovered and is the first or second movie
+                        movieHover[i-1] = True # set the movieHover status boolean in the boolean array for that movie to true
+                    else: # if its the 3 rd movie that is being hovered
+                        if firstThree: # check if the moive is in the first three (if its not that means its the second three and their is not third movie [we are using 5 movies])
+                            movieHover[i-1] = True # sets the hover state for the 3rd movie to True
+                else: # if the current movie is not being hovered
+                    movieHover[i-1] = False # set its hover state to False
 
-        else:
-            if timeSelection:
-                for i in range(len(timeInfo)):
-                    if mousePos[0] > int(width/2 - 60) and mousePos[0] < int(width/2 + 60) and mousePos[1] > int(height/2 - 115 + i*70) and mousePos[1] < int(height/2 - 65 + i*70):                  
-                        timeHover[i] = True
+        else: # If the user is currently instead selecting specifics like the time, seat and more (after picking the movie)
+            if timeSelection: # Checks if the user is currently selecting the time they want to attend
+                for i in range(len(timeInfo)): # Loops through the different times in the timeInfo list
+                    if mousePos[0] > int(width/2 - 60) and mousePos[0] < int(width/2 + 60) and mousePos[1] > int(height/2 - 115 + i*70) and mousePos[1] < int(height/2 - 65 + i*70): # Chceks if the user is currently hovering over one of the times               
+                        timeHover[i] = True # if they are, the position relative to the time they are hovering is set to True in the boolean list for the times hovered
                     else:
-                        timeHover[i] = False         
+                        timeHover[i] = False # if the current time is not hovered, then its status is set to False
             
-            if seatSelection:
-                if mousePos[0] > int(width/2 + 90) and mousePos[0] < int(width/2 + 90 + 150) and mousePos[1] > int(height/2 + 190) and mousePos[1] < int(height/2 + 190 + 50):
-                    seatContinue = True
+            elif seatSelection: # Checks if the user is currently selecting their seat instead
+                if mousePos[0] > int(width/2 + 90) and mousePos[0] < int(width/2 + 90 + 150) and mousePos[1] > int(height/2 + 190) and mousePos[1] < int(height/2 + 190 + 50): # checks if the user is hovering the continue button on that page
+                    seatContinue = True # if they are it, the hover boolean for it is set to True
                 else:
-                    seatContinue = False
-            else:
-                if mousePos[0] > int(width/2 + 90) and mousePos[0] < int(width/2 + 90 + 150) and mousePos[1] > int(height/2 + 190) and mousePos[1] < int(height/2 + 190 + 50):
-                    signInContinue = True
+                    seatContinue = False # if not, the hover boolean is set to false
+            else: # if the user is not selecting their seat, then they are on the sign in and sign up pages
+                if mousePos[0] > int(width/2 + 90) and mousePos[0] < int(width/2 + 90 + 150) and mousePos[1] > int(height/2 + 190) and mousePos[1] < int(height/2 + 190 + 50): # checks if the user is hovering the sign in button
+                    signInContinue = True # if they are, the sign in hover boolean is set to true
                 else:
-                    signInContinue = False
+                    signInContinue = False # else the sign in hover boolean is set to false
 
-                # (int(width/2 - 90), int(height/2 + 190) 150, 50
-                if mousePos[0] > int(width/2 - 240) and mousePos[0] < int(width/2 - 90) and mousePos[1] > int(height/2 + 190) and mousePos[1] < int(height/2 + 240):
-                    signUpHover = True
+                # Sign up button hover
+                if mousePos[0] > int(width/2 - 240) and mousePos[0] < int(width/2 - 90) and mousePos[1] > int(height/2 + 190) and mousePos[1] < int(height/2 + 240): # checks if the user is hovering over the sign up button
+                    signUpHover = True # if they are, the sign up hover boolean is set to true
                 else:
-                    signUpHover = False
+                    signUpHover = False # else it is set to false
             
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_BACKSPACE:
-                if userTyping:
-                    username = username[:-1]
-                elif passTyping:
-                    password = password[:-1]
-                elif cardTyping:
-                    creditCard = creditCard[:-1]
-                elif emailTyping:
-                    email = email[:-1]
+    for event in pygame.event.get(): # retrieves all the "events" that are captured by pygame (this mainly includes mouse and keyboard inputs)
+        if event.type == pygame.KEYDOWN: # checks the events if it was a key pressed down (using the .type method (from pygame))
+            if event.key == pygame.K_BACKSPACE: # if the key pressed is specifically backspace (pygame.K_BACKSPACE represents backspace in the pygame library)
+                if userTyping: #checks if the user is typing the username
+                    username = username[:-1] # if they are, then remove the last character
+                elif passTyping: # checks if the user is typing their password
+                    password = password[:-1] # if they are then remove the last character
+                elif cardTyping: # checks if the user is typing their credit card info
+                    creditCard = creditCard[:-1] # if they are then remove the last character
+                elif emailTyping: # checks if the user is typing their email
+                    email = email[:-1] # if they are then remove the last character
 
-            else:
-                if userTyping:
-                    username += event.unicode
-                elif passTyping:
-                    password += event.unicode
-                elif cardTyping:
-                    creditCard += event.unicode
-                elif emailTyping:
-                    email += event.unicode
+            else: # if the key was not a backsapce (it types it instead)
+                if userTyping: # checks if the user is typing their username
+                    username += event.unicode # adds the character to the end of the string
+                elif passTyping: # checks if the user is typing their password
+                    password += event.unicode # if they are, it adds a character to the end of the string
+                elif cardTyping: # checks if the user is typing their credit card info
+                    if event.unicode in "0123456789": # checks if the key pressed is a number
+                        creditCard += event.unicode # if they are, then it adds the number to the end of the string
+                elif emailTyping: # checks if the user is typing their email
+                    email += event.unicode # if they are, it adds the character to the end of the string
 
-        if event.type == MOUSEBUTTONDOWN:
-            if event.button == 1:
-                if hoverStates[0] == True:
-                    running = False 
+        if event.type == MOUSEBUTTONDOWN: # checks the event if it was a button pressed down
+            if event.button == 1: # checks if the button presses in button 1 (denotes left click)
+                if hoverStates[0] == True: # if a click occurs and the user is hovering the x button on the border
+                    running = False # terminates the program
 
-                if hoverStates[1] == True:
-                    if not maximized:
-                        size = width, height = (1920,1080)
-                        root = pygame.display.set_mode(size, pygame.NOFRAME)
-                        window.position = (0,0)
-                        maximized = True
-                    else:
-                        maximized = False
-                        size = width, height = (1280, 745)
-                        root = pygame.display.set_mode(size, pygame.NOFRAME)
-                        window.position = (100,100)
+                if hoverStates[1] == True: # if a click occurs and the user is hovering the square on the border
+                    if not maximized: # checks if the screen is not maximized
+                        size = width, height = (1920,1080) # sets a new width and height for the screen (1920 * 1080 [1080p])
+                        root = pygame.display.set_mode(size, pygame.NOFRAME) #uses the size to reset the window for the program
+                        window.position = (0,0) # sets the window position to 0, 0 on the monitor
+                        maximized = True # sets the boolean that denotes if the window is maximized to True
+                    else: # if the screen was already maximized
+                        maximized = False # sets maximized to false
+                        size = width, height = (1280, 745) # sets the width and height to a new size
+                        root = pygame.display.set_mode(size, pygame.NOFRAME) # uses the size to reset teh window for the program
+                        window.position = (100,100) # sets the window position to 100, 100 on the monitor
                 
-                if enterButtonHover == True:
-                    mainPage = False
-                    moviePage = True
+                if enterButtonHover == True: # if the user clicks and they are hovering the enter button on the main page
+                    mainPage = False # the boolean denoting the main page is on is set to false
+                    moviePage = True # the boolean denoting the movie page is set to True
+                    # basically switches to the movie page
 
-                if sliderHover == True:
-                    if firstThree == True:
-                        slidingFactor1 = 0
-                        movieSlidingAnim1 = True
-                    else:
-                        slidingFactor1 = 0
-                        movieSlidingAnim2 = True
-
+                if sliderHover == True: # if the user clicks and they are overing the slider buttons
+                    if firstThree == True: # if the user is currently on the first three movies
+                        slidingFactor1 = 0 # resets the sliding factor
+                        movieSlidingAnim1 = True # then sets the boolean denoting the sliding animation for the first page to True
+                    else: # if the user is instead on the second three movies
+                        slidingFactor1 = 0 # resets the sliding factor again
+                        movieSlidingAnim2 = True # sets the boolean denoting the sliding animation for second page to True
+                
+                # checks if the user is on the selection page and mouse is clicked on the edges of the screen (off the selection window)
                 if selection and ((mousePos[0] > 0 and mousePos[0] < int(width/2 - 250)) or (mousePos[0] > int(width/2 + 250) and mousePos[0] < width) or (mousePos[1] > 25 and mousePos[1] < int(height/2-250)) or (mousePos[1] > int(height/2 + 250) and mousePos[1] < height)):
-                    selection = False
-                    timeSelection = False
-                    seatSelection = False
-                    totalSeatCalculated = False
-                    signInPage = False
-                    pickedSeats = []
-                    username = usernameDefault
-                    password = passwordDefault
-                    creditCard = creditcardDefault
-                    email = emailDefault
-                    ticketOut = False
+                    # if that is the case then it closes the window (returns to movie page basically)
+                    selection = False # sets boolean denoting selection is on to false
+                    timeSelection = False # sets boolean denoting that the user is currently selecting the time to false
+                    seatSelection = False # sets teh boolean denoting that hte user is currently selecting their seat to false
+                    totalSeatCalculated = False # sets the boolean denoting that the seat information has been retrieved to false
+                    signInPage = False # sets the boolean denoting that the user is on the sign in page to false
+                    pickedSeats = [] # resets the picked seats array
+                    username = usernameDefault # resets the username string 
+                    password = passwordDefault # resets the password string
+                    creditCard = creditcardDefault # resets the credit card info string
+                    email = emailDefault # resets the email string
+                    ticketOut = False # sets the boolean denoting that the user is currently viewing their reciept / ticket to false
                 
-                for i in range(len(movieHover)):
-                    if movieHover[i]:
-                        if firstThree:
-                            print(movieInfo[i])
-                            pickedMovie = i
-                            movieHover[i] = False
-                            timeSelection = True
-                            selection = True
-                        elif secondThree and i!= 2:
-                            print(movieInfo[i+3])
-                            pickedMovie = i+3
-                            selection = True
-                            timeSelection = True
-                            movieHover[i] = False
+                for i in range(len(movieHover)): # goes through numbers 0 to 2 (denoting the 3 movies that could be hovered)
+                    if movieHover[i]: # if the current movie hover boolean is true and its clicked
+                        if firstThree: # checks if its currently the first 3 movies on
+                            pickedMovie = i # sets the picked movie variable to the index of that movie in the movie array
+                            movieHover[i] = False # sets the movie hover boolean back to false
+                            timeSelection = True # sets the boolean that denotes the user is selecting the time to True
+                            selection = True # sets the boolean that denotes that the selection window is on to True
+                        elif secondThree and i!= 2: # if its not the first three movies and its not on the 3 movie (index 2 in the for loop)
+                            pickedMovie = i+3 # sets the picked movie variable to the index of the movie hovered + 3 (since they are the second three 3 must be added so that it matches the movie's index in the array of movies)
+                            selection = True # sets the boolean that the user is on the selection window to true
+                            timeSelection = True # sets the boolean that denotes the user is selecting the time to true
+                            movieHover[i] = False # resets the moive hover boolena for this movie back to false
 
-                for i in range(len(timeHover)):
-                    if timeHover[i] == True:
-                        pickedTime = timeInfo[i]
-                        timeSelection = False
-                        signInPage = False
-                        seatSelection = True
-                        timeHover[i] = False
-                        totalSeatCalculated = False
+                for i in range(len(timeHover)): # goes through the numbers 0 till the number of times available - 1 (-1 becuase for loops count from 0 to the range -1 [ex: range(5) denotes 0 to 4, still denotes 5 loops but just starts from 0])
+                    if timeHover[i] == True: # checks if the current index has the time hovered alogn with a click 
+                        pickedTime = timeInfo[i] # if so the picked time variable is set to the string of the time picked
+                        timeSelection = False # this sets the boolean denoting the user is picking the time to False
+                        seatSelection = True # this sets the boolean denoting the user is now picking their seat to True
+                        timeHover[i] = False # resets the time hovered back to false
+                        totalSeatCalculated = False # sets the variable denoting the seat info has been retrieved to False
                 
-                if seatSelection:
-                    for y in range(len(hoveredSeat)):
-                        for x in range(10):
-                            if hoveredSeat[y][x] == 1:
-                                if [y,x] in pickedSeats:
-                                    pickedSeats.remove([y,x])
-                                else:
-                                    if seatsSelected < 11:
-                                        pickedSeats.append([y,x])
+                if seatSelection: # if the user is currently picking their seats
+                    for y in range(len(hoveredSeat)): # for loop that goes through the rows of the hovered seat 2d list
+                        for x in range(10): # for loop that goes through the coloumns in each row of the hovered seats 2d list 
+                            if hoveredSeat[y][x] == 1: # checks the seat at the position the for loop is currently checking is hovered during the click
+                                if [y,x] in pickedSeats: # if it checks if the seat is already in the picked seats list
+                                    pickedSeats.remove([y,x]) # if so that means the user is removing the seat (thus the seat is removed from the list)
+                                else: # if the seat is not in the picked seats list already
+                                    if seatsSelected < 11: # checks to make sure the the number of seats selected is still less than 11 (maximum 10 then)
+                                        pickedSeats.append([y,x]) # if it is less than 10, the seat is added to the picked list
 
-                    seatsSelected = len(pickedSeats)
+                    seatsSelected = len(pickedSeats) # resets the variable denoting the number of seats selected to the new length of picked seats (in case it changed)
 
-                if seatContinue and seatSelection and len(pickedSeats) > 0:
-                    seatSelection = False
-                    signInPage = True
-                    seatContinue = False
-                    username = usernameDefault
-                    password = passwordDefault
-                    creditCard = creditcardDefault
-                    email = emailDefault
+                if seatContinue and seatSelection and len(pickedSeats) > 0:  # checks if the continue button is hovered on the seat selection page and that the user is currently on the seat selection page and that hte user picked more than 0 seats
+                    seatSelection = False # sets the boolean denoting the user is selecting seats to false
+                    signInPage = True # sets the boolean that the user is on the sign up / sign in page to True
+                    seatContinue = False # sets the boolean denoting that the continue button in seat selection step is hovered to False
+                    username = usernameDefault # resets the username 
+                    password = passwordDefault # resets the password
+                    creditCard = creditcardDefault # resets the credit card info
+                    email = emailDefault # resets the email info
 
-                if signInPage:
-                    if signUpHover:
-                        if signUpPage != True:
-                            signUpPage = True
-                            username = usernameDefault
-                            password = passwordDefault
-                            creditCard = creditcardDefault
-                            email = emailDefault
-                        elif checkInfo('signup'):
-                            if upd.update().addUser(username, password, creditCard, email):
-                                print("added")
-                                signInPage = False
-                                ticketOut = True
-                            else:
-                                print("already exists")
-                    elif signInContinue:
-                        if signUpPage:
-                            signUpPage = False
-                            emailTyping = False
-                            cardTyping = False
-                            username = usernameDefault
-                            password = passwordDefault
-                            creditCard = creditcardDefault
-                            email = emailDefault
+                if signInPage: # if the user is currently on the sign up/ sign in page
+                    if signUpHover: # if the user is hovering over the sign up buttom during the button click
+                        if signUpPage != True: # checks if the sign up page is not already the one being displayed
+                            signUpPage = True # if it isnt, then it the boolean denoting it is on is set to true
+                            username = usernameDefault # resets the username variable
+                            password = passwordDefault # resets the password variable
+                            creditCard = creditcardDefault # resets the credit card variable 
+                            email = emailDefault # resets the email variable
+                        elif checkInfo('signup'): # if the page is already open, and the user is hovering the sign up button and clicks, then it checks if the info is correctly formatted
+                            if upd.update().addUser(username, password, creditCard, email): # if the info is formatted right, it then tries to add the user info using the update() class in the updateScript in this directory and the add user function
+                                # if it succeeds
+                                signInPage = False # sets the boolean denoting that the user is on hte sign in page to False
+                                for seats in range(len(pickedSeats)): # goes through all the seats in the picked seats (using the index number stored in seats)
+                                    row = pickedSeats[seats][1] # sets the variable row to the row of the currently picked seat
+                                    coloumn = pickedSeats[seats][0] # sets the variable coloumn to the coloumn of the currently picked seat
+                                    upd.update().bookSeat(pickedTime, row, coloumn, pickedMovie) # it then books the seat for the user using the bookSeat() function in the update class in the update script in the directory
+                                    upd.update().addPoints(username, password) # it then also uses another function in the update script (addPoints()) to award the user points for every chair selected
+                                ticketOut = True # sets the boolean denoting the user is currently on the ticket viewing page to true
+                            else: # if the addUser method returns false (fails to add the user to the list) that means the user already existed
+                                print("already exists") # sends it out to the console (not seen by the user using the application)
+                    
+                    elif signInContinue: # if the button hovered and clicked is instead the sign in button
+                        if signUpPage: # checks if the user is on the sign up page not sign in
+                            # takes the user to the sign in page
+                            signUpPage = False # sets the boolean denoting the user is on the sign up page to False
+                            emailTyping = False # sets the boolean denoting the user is typing their email to False
+                            cardTyping = False  # sets the boolean denoting the user is typing their credit card info to False
+                            username = usernameDefault # resets the username string
+                            password = passwordDefault # resetns the password string
+                            creditCard = creditcardDefault # resets the credit card info string
+                            email = emailDefault # resets teh email string
                         elif checkInfo('signin'):
                             if upd.update().checkUser(username, password):
                                 print("Correct Info")
@@ -424,7 +437,7 @@ while running:
                             draggingWin = True
                             oldPos = pygame.mouse.get_pos()
         
-        elif event.type == MOUSEBUTTONUP:
+        elif event.type == MOUSEBUTTONUP: # checks if the event was a mouse button being released
             if event.button == 1:
                 if not maximized:
                     if draggingWin:
@@ -433,7 +446,7 @@ while running:
                         winPos = (winPos[0] - oldPos[0] + mousePos[0], winPos[1] - oldPos[1] + mousePos[1])
                         window.position = winPos
 
-        if event.type == MOUSEMOTION:
+        if event.type == MOUSEMOTION: # checks if the event was mouse motion
             if not maximized:
                 if draggingWin:
                     mousePos = pygame.mouse.get_pos()
