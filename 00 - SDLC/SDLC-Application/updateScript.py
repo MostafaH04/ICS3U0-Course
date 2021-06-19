@@ -10,18 +10,20 @@
 ############################################
 
 
-import reference
-from firebase_admin import db
-import hashlib
+import reference # imports references script in directory
+from firebase_admin import db # imports firebase library
+import hashlib # imports the hash library (encryption)
 
+# iniates a  class
 class update():
+    # the function that runs when the class is called
     def __init__(self):
-        self.usersRef = db.reference("/users")
-        self.timeRef = db.reference("/times")
-        self.screenRef = db.reference("screens")
-        self.startingPoints = 10
-        self.prizePoints = 5
-        self.timeSlots = {
+        self.usersRef = db.reference("/users") # sets this variable to reference the /users directory in the database
+        self.timeRef = db.reference("/times") # sets this variable to reference the /times directory in the database
+        self.screenRef = db.reference("screens") # sets this variable to reference the /screens directory in the database
+        self.startingPoints = 10 # variable that denotes the points given on making an acc
+        self.prizePoints = 5 # variable storing points per transaction
+        self.timeSlots = { # dictonary that relates each time to a key for times in the database
             "09:00":"1morning",
             "10:00":"1morning",
             "13:00":"2afternoon",
@@ -29,13 +31,15 @@ class update():
             "20:00":"3evening"
         }
     
+    # function taht goes through the database and returns all the usernames for all the users
     def getUsers(self):
         users = self.usersRef.get()
         usernames = []
         for keys in users.keys():
             usernames.append(users[keys]["username"])
         return usernames
-
+    
+    # function that adds a user to the database using a password, username, credit card and email
     def addUser(self, newUsername, newPassword, creditCard, userEmail):
         try:
             users = self.getUsers()
@@ -55,8 +59,9 @@ class update():
             return True
         
         except:
-            return "An error has occured. Please try again at a later time"
+            return False
 
+    # using the given username and password, it checks if the user exists in the database with the same information
     def checkUser(self, username, password):
         users = self.usersRef.get()
         for key in users.keys():
@@ -68,6 +73,7 @@ class update():
         print("Not Successful, Try Again")
         return False
 
+    # displays the seats in the console
     def disp(self, seats):
         for y in range(len(seats)):
             for x in range(len(seats[y])):
@@ -77,6 +83,7 @@ class update():
                 print(out, end = " ")
             print()
 
+    # retrieves seat info from the database
     def seatInfo(self,time,screen):
         times = self.timeRef.get()
 
@@ -87,6 +94,7 @@ class update():
         seatData = times[self.timeSlots[time]][time][int(screen)]
         return seatData
 
+    # uses the seatInfo function to turn the seats info into a 2d array with 1 as normal seat, 2 as disability, 3 if it does not exist and 0 if its taken
     def checkSeats(self, time, screen):
         seatData = self.seatInfo(time, screen)
 
@@ -115,13 +123,14 @@ class update():
                 seatStatus.append(currRow)
 
         print(seatStatus)
-        self.disp(seatStatus)
+        self.disp(seatStatus) # calls on the display function to display the seating
 
         for i in range(len(seats[0])):
             totalSeats.append(seats[0][i]+seats[1][i])   
 
         return seatStatus
 
+    # books a seat in a screen at a specific time (turning it to false)
     def bookSeat(self, time, row, coloumn, screen):
         row = int(row)
         coloumn = int(coloumn)
@@ -139,7 +148,8 @@ class update():
                 print(ref.get())
                 break
             row-=int(seats[coloumn])
-        
+    
+    # function that adds points to a specific user using their username and password
     def addPoints(self, username, password):
         users = self.usersRef.get()
         for key in users.keys():

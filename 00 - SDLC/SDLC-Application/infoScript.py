@@ -10,9 +10,10 @@
 ############################################
 
 
-from reference import refer
-from firebase_admin import db
+from reference import refer # imports the reference script in the directory 
+from firebase_admin import db # imports the firebase library
 
+# creates a class called showinfo (requires a set of the data)
 class showInfo(set):
     def __init__(self, set):
         self.screens = set['screens']
