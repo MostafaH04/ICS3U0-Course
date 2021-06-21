@@ -175,6 +175,10 @@ def checkInfo(mode): # Function used to check if the user info currently placed 
         
         if username == usernameDefault or password == passwordDefault or creditCard == creditcardDefault or email == emailDefault: # checks if any of the user's sign up info has still not been changed
             return False # if any feild has not been changed it returns back to the place the function was called False [indicating that some field have not been changed]
+        
+        elif "@" not in email or "." not in email: # checks to make sure that @ and . are in the email inputed which are the two main parts of an email
+            return False # if they arent, false is returned to denote that something is inputed in the wrong format
+
         else:
             return True # if all the fields have changed, then it returns back to the place the function was called True [indicating that all the feilds were changed as wanted]
     

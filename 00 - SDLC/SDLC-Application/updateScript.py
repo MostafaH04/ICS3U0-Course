@@ -35,18 +35,20 @@ class update():
     def getUsers(self):
         users = self.usersRef.get()
         usernames = []
-        for keys in users.keys():
+        for keys in users.keys(): # in dictionaries they have "keys" which can be retrieved using .keys() method in python, this for loops retrieves all of these keys can uses each one since each one stands for each user
             usernames.append(users[keys]["username"])
         return usernames
     
     # function that adds a user to the database using a password, username, credit card and email
     def addUser(self, newUsername, newPassword, creditCard, userEmail):
-        try:
+        try: # attempts to carry out the function of adding users
             users = self.getUsers()
-            if newUsername in users:
-                return False
+            if newUsername in users: # if the user already exists
+                return False # return false, since two users with same usernames cannot happen
 
-            creditHash = hashlib.sha256(str(creditCard).encode()).hexdigest()
+            creditCardBytes = str(creditCard).encode() # insures credit card is a string, then encodes it into bytes that are used by python (required for Hash to work)
+            creditHashBin = hashlib.sha256(creditCardBytes) # uses the sha256 hash function on the bytes string representing the credit card number (basically encrypting it [non-reversable]
+            creditHash = creditHashBin.hexdigest() # converts the encoded data in the byte format into a hexadecimal format (better than binary in this case; results in smaller strings of infomation)
             points = self.startingPoints
             newUserData = {
                 "username": newUsername,
@@ -58,7 +60,7 @@ class update():
             self.usersRef.push(newUserData)
             return True
         
-        except:
+        except: # if error eccurs it returns false instead (denoting that it was not able to add the user)
             return False
 
     # using the given username and password, it checks if the user exists in the database with the same information
