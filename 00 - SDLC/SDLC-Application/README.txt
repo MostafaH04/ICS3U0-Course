@@ -59,3 +59,6 @@ as movies sometimes change)]).
 Anyhow, the link to the database is: https://test-4f163-default-rtdb.firebaseio.com/
 If accessing this is not possible, check the information.json file, which is what is used to reset the database it self, so it is a good method of seeing what is on the database 
 it self.
+
+NOTE: Database is set to be temporary, and will stop working on July 1st, it is possible to extend this duration for free, however I will only be using this specific data base for
+this application until the end of the Quadmester.
