@@ -43,5 +43,5 @@ def reset():
 		# resets the database to contain the information inside info
 		ref.set(info)
 		
-
+# calls on the reset function (could also be called from another program, possibly another application with a GUI for developers/employees to use that also grants them access to reset)
 reset()
