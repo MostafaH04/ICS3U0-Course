@@ -49,7 +49,7 @@ that would help me learn more about the function it self.
 Pip cmd:
 In command line type: pip install hashlib
 - Installs the Hashlib library
-_______________________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________________________
 
 Accessing the Database:
 The database requires me to share access to the firebase project with any account that wants to access / view the database or other things on it 
